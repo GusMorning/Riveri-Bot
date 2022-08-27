@@ -29,6 +29,11 @@ Recibirás el `response`donde podrás hacer preguntas y estas se reenvian al lug
 Recibirás el `response` donde podrás hacer sugerencias que podrán ser leidas por nosotros al ser enviadas a nosotros
 ![Imagen_Sugerencias](https://i.postimg.cc/PJXBzwg4/2147483648-210498.jpg)
 ## 5. ¿Quiénes somos?:
-Recibirás la presentación de nuestro Municipio Escolar con una imagen referencial.
+Recibirás la presentación de nuestro Municipio Escolar con una imagen referencial.\
 `Comando: ¿Quiénes somos?:`
 ![Imagen_Quienes_Somos](https://i.postimg.cc/Hk0W2QRG/2147483648-210500.jpg)
+## 6. Plan Evolutivo:
+Recibirás el `documento` en pdf del Plan Evolutivo del año 2022:\
+`Comando: Plan evolutivo`:
+![Imagen_Plan_Evolutivo](https://i.postimg.cc/BvPxvZvQ/2147483648-210508.jpg)
+
