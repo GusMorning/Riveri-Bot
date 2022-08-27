@@ -1,3 +1,2 @@
 node_modules
-.wwebjs.auth
-wwebjs.auth
+.wwebjs.auth/session
