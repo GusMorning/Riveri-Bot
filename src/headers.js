@@ -96,7 +96,7 @@ class menu {
 };
 /* --------------------------- SECTION ubicaciones de archivos -------------------------- */
 var ubicacionQuienesSomos = "./media/municipio.png";
-var ubicacionPlanEvolutivo = "./Plan Evolutivo.pdf"
+var ubicacionPlanEvolutivo = "./media/Plan Evolutivo.pdf"
 var ubicacionInstagram = "./media/instagramNRC.jpg";
 var ubicacacionFacebook = "./media/facebookNRC.jpg";
 var ubicacionPaginaWeb = "./media/screenshot.png";
