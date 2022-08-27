@@ -19,7 +19,7 @@
     "express": "^4.17.2",
     "file-type": "^16.5.4",
     "mime-db": "^1.51.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "mysql": "^2.18.1",
     "nanoid": "^3.1.32",
     "node-fetch": "^2.6.7",
