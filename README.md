@@ -12,7 +12,8 @@ Riveri-Bot es un chat-bot de ayuda para difundir información relevante del Muni
 - Cuenta con `funcionalidades diversas` y un entorno amigable para el usuario
 - Tiene gran parte del código base ```main.js``` documentado para una fácil comprensión.
 ## Guia de uso
-![demo](http://g.recordit.co/If3BrIGdtD.gif)
 1. Saludo:\
-`Usuario: Hola`
-> Hola! Soy Riveri-Bot, 
+Recibirás el saludo principal del bot, enviándote una opción para presionar y seguir con las opciones del menú\
+`Comando: Hola, ola`
+![Imagen](https://i.postimg.cc/pXJ0Z402/ola.jpg)
+2. Opciones:\
