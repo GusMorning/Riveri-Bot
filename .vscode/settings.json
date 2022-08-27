@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        ".wwebjs_auth": true
+    },
+    "workspace.isHidden": true
+}

@@ -102,12 +102,15 @@ const {
     var dia = fechaHora.toDateString();
     var familia = {};
     var diasSemanales = new Array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo")
-    function mensajeDeActivacion(StatusBot, Horas, Minutos, Dia, Fecha) {
-    this.StatusBot = StatusBot
-    this.Horas = Horas
-    this.Minutos = Minutos
-    this.Dia = Dia
-    this.Fecha = Fecha}
+    class mensajeDeActivacion {
+    constructor(StatusBot, Horas, Minutos, Dia, Fecha) {
+        this.StatusBot = StatusBot;
+        this.Horas = Horas;
+        this.Minutos = Minutos;
+        this.Dia = Dia;
+        this.Fecha = Fecha;
+    }
+}
     familia.prueba1 = new mensajeDeActivacion(
     "Encendido", 
     horas, 
