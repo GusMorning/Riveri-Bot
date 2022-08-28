@@ -4,7 +4,7 @@
 - [¿Cómo usarlo?](#Guia_de_uso)
 - [Creditos](#Agradecimientos)
 # Presentación
-Riveri-Bot es un chat-bot de ayuda para difundir información relevante del Municipio Escolar para la I.E "Nicanor Rivera Cáceres" 7050, además .
+Riveri-Bot es un chat-bot de ayuda para difundir información relevante del Municipio Escolar para la I.E "Nicanor Rivera Cáceres" 7050.
 - Su desarollo empezó desde `Enero del 2022`
 - Establecido en la red social `WhatsApp` para mayor alcance de usuarios.
 - Programado en `Javascript y NodeJS`. 
@@ -35,5 +35,3 @@ Recibirás la presentación de nuestro Municipio Escolar con una imagen referenc
 Recibirás el `documento` en pdf del Plan Evolutivo del año 2022:\
 `Comando: Plan evolutivo`:
 ![Imagen_Plan_Evolutivo](https://i.postimg.cc/BvPxvZvQ/2147483648-210508.jpg)
-# Agradecimientos:
-- Gracias a [WhatsApp-web.js](https://github.com/pedroslopez/whatsapp-web.js) por la librería usada para la conexión a WhatsApp
