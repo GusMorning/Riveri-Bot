@@ -69,6 +69,23 @@ let numero2 = 4;
 let suma = numero1 + numero2;
 // El resultado sería... 6 ya que es numero1(2) + numero2(4) = 6
 ```
+¡Excelente! Ahora sigamos a ***Prueba 02***: Queremos que la suma de dos números se muestren en la consola donde ejecutamos el código:
+> Consejo: Se le llama la consola a la terminal de comando. En Window es CMD (Símbolos del Sistema) y para enviar algo allí, debemos usar el comando `console.log()` en el interior del parentesís estará la expresión o valor que queremos mostrar en pantalla
+```js
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+let numero1 = 2;
+let numero2 = 4;
+let suma = numero1 + numero2;
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+console.log(suma)
+// Ahora, ¿Qué mostrará la consola? Veamos:
+╔═════════╗
+║ Consola ║
+╠═════════╣
+║ 6       ║
+║         ║
+╚═════════╝
+```
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 // Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
