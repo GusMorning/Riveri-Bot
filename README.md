@@ -80,10 +80,10 @@ let suma = numero1 + numero2;
 console.log(suma)
 // Ahora, ¿Qué mostrará la consola? Veamos:
 ╔═════════╗
-║  Consola ║
+║ Consola  
 ╠═════════╣
-║ 6        ║
-║          ║
+║ 6         
+║           
 ╚═════════╝
 ```
 ## 1. Creación de la sesión de WhatsApp:
