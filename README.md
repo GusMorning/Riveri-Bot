@@ -83,7 +83,6 @@ console.log(suma)
 ║ Consola  
 ╠═════════╣
 ║ 6         
-║           
 ╚═════════╝
 ```
 ## 1. Creación de la sesión de WhatsApp:
