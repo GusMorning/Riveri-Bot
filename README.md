@@ -48,7 +48,7 @@ if = Quiere decir "Si esto ocurre", sacado de la palabra en inglés
 > Si no se comprende del todo, no hay problema. Continua prestando atencion y lo entenderás completamente >
 Entonces, tal como si ordenaramos a la computadora que hiciera algo, pasa lo mismo con el lenguaje de programación. Estaremos indicando qué, cómo y cuándo hará una acción. ***¿Qué dices, los ponemos a prueba?***
 - Prueba 01: Queremos sumar dos números, y saber su resultado. ¿Cómo lo haremos?
-> Consejo: `let` quiere decir que vas a darle valor a algo, en este caso se llama `variable`. Como si hicieras una ecuación, vamos a estar dándole el valor a una incognita `x` lo mismo pasará aquí con una variable:
+> ##### Consejo: `let` quiere decir que vas a darle valor a algo, en este caso se llama `variable`. Como si hicieras una ecuación, vamos a estar dándole el valor a una incognita `x` lo mismo pasará aquí con una variable:
 ```js
 //  ┌─────────────────────────────Declarando el primer valor─────────────────────────────┐
 // - Tenemos la primera variable o incognita al que le asignaremos un valor:
@@ -62,7 +62,7 @@ let numero2 = 4
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 ```
 Ahora, si te dijera esta oración: `Si x es igual a 2 y z es igual a 4, ¿cuánto suman x + y? La respuesta sería 6`, lo mismo con el código que hicimos arriba:
-> Consejo: Se utiliza un punto y coma al final de cada expresión como `let` para dar a conocer que hasta allí termina y sigue lo siguiente.
+> ##### Consejo: Se utiliza un punto y coma al final de cada expresión como `let` para dar a conocer que hasta allí termina y sigue lo siguiente.
 ```js
 let numero1 = 2;
 let numero2 = 4;
@@ -70,7 +70,7 @@ let suma = numero1 + numero2;
 // El resultado sería... 6 ya que es numero1(2) + numero2(4) = 6
 ```
 ¡Excelente! Ahora sigamos a ***Prueba 02***: Queremos que la suma de dos números se muestren en la consola donde ejecutamos el código:
-> Consejo: Se le llama la consola a la terminal de comando. En Window es CMD (Símbolos del Sistema) y para enviar algo allí, debemos usar el comando `console.log()` en el interior del parentesís estará la expresión o valor que queremos mostrar en pantalla
+> ##### Consejo: Se le llama la consola a la terminal de comando. En Window es CMD (Símbolos del Sistema) y para enviar algo allí, debemos usar el comando `console.log()` en el interior del parentesís estará la expresión o valor que queremos mostrar en pantalla
 ```js
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
 let numero1 = 2;
@@ -86,7 +86,7 @@ console.log(suma)
 ╚═════════╝
 ```
 ¡Wow, estás avanzando rápido! Pronto bucearás con los tuborones del Javascript, ya te veré.
-> Consejo: Existen tres tipos de `variables`:
+> ##### Consejo: Existen tres tipos de `variables`:
 1. `string`: Es para asignarle texto a nuestra variable como valor.\
     `let miNombre = "Gustavo"`\
     Aún así, ¿Solo son `strings` aquella variables que tienen texto? **No** pero ya lo estas comprendiendo. Independientemente que pudiera ser texto, tiene la capacidad de representar un número, veamos:\
@@ -108,9 +108,16 @@ let miPesoConvertido = miPeso + kilogramos;
 ║ 69 kg         
 ╚═════════╝
 ```
-3. `boolean`: Aplica cuando el valor de variable es `true` o `false`, ¿Qué quiere decir esto? Observemos: \
+3. `boolean`: Aplica cuando el valor de variable es `true` o `false`, ¿Qué quiere decir esto? Observemos: 
     - Si nos dicen que `Pedro tiene la misma edad que Jaimito, entonces si digo Jaimito tiene la misma edad que Pedro`. Estaré diciendo algo **verdadero** o **true**
     - Pero si digo: `Entonces, Jaimito es mayor que Pedro` contará como **falso** o **false**.
+
+> ##### Consejo: ¿Cuáles son los tipos de formas de declarar una varaible?
+
+
+
+
+
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 // Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
