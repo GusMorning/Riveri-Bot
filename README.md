@@ -259,29 +259,23 @@ client tiene varios aspectos como:
 client.on 'authenticated': comienza el inicio y escaneo de la sesión actual.
 client.on 'auth_failure': ocurre si el inicio de sesión es incorrecto o erroneo.
 client 'initialize': para finalizar el proceso de inicio de sesión, y comenzar a utilizar el código.
-client.on 'ready': cuando el cliente está listo para recibir mensjaes
-
-
+client.on 'ready': cuando el cliente está listo para recibir mensajes
 /*
 const client = new Client({authStrategy: new LocalAuth(), puppeteer: {headless: false}});
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     /* [0] */ // empezarAuntenticacion(); // Se inicia la sesión del bot, en caso de no    │
-//  │ estar auntenticado se pide el escaneo del QR. Posteriormente se envía un mensaje  │
-//  │ al grupo "StatusBot" de encendido, luego envía una confirmación a la consola      │
-//  │ junto con una tabla.                                                              │
+//  │ estar auntenticado se pide el escaneo del QR. 
 //  └───────────────────────────────────────────────────────────────────────────────────┘
-//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+
 function empezarAuntenticacion(){
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Generación del Código QR :::::::::::::::::::::::::::::::::::::::::::::::::::::::::│
     //  └───────────────────────────────────────────────────────────────────────────────────┘
         client.on("qr", (qr) => {
         console.log("[+]Test: QR Listo!");
-        qrcode.generate(qr, {
-        small: true
-        })});
+        qrcode.generate(qr, {small: true})});
     //  └───────────────────────────────────────────────────────────────────────────────────┘
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Autenticación del cliente correcta :::::::::::::::::::::::::::::::::::::::::::::::│
@@ -297,9 +291,11 @@ function empezarAuntenticacion(){
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Preparación lista del cliente ::::::::::::::::::::::::::::::::::::::::::::::::::::│
     //  └───────────────────────────────────────────────────────────────────────────────────┘
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
         client.on("ready", () => {
         console.log("[+] Prueba: Encendido " + "realizado con éxito".green.italic)});
     //  └───────────────────────────────────────────────────────────────────────────────────┘
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
         client.initialize();
     //  └───────────────────────────────────────────────────────────────────────────────────┘
     };
