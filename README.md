@@ -38,6 +38,13 @@ Recibirás el `documento` en pdf del Plan Evolutivo del año 2022:\
 ![Imagen_Plan_Evolutivo](https://i.postimg.cc/BvPxvZvQ/2147483648-210508.jpg)
 # Framework para la creación de Bots
 # ![Imagen_Framework](https://i.postimg.cc/0NVtQzQw/Riveri-Bo1t.png)
+## Las bases: ¿Qué es un lenguaje de programación y cómo lo usaremos?
+- Es una serie de instrucciones que indicamos a la máquina para realizar en secuencia (Queriendo decir de forma organizada), utilizan una sintaxis referencia del inglés, por lo que encontrarás expresiones en Javascript como:
+```js
+if = Quiere decir "Si esto ocurre", sacado de la palabra en inglés
+```
+> Si no se comprende del todo, no hay problema. Continua prestando atencion y lo entenderás completamente
+- Entonces, tal como si ordenaramos a la computadora que hiciera algo, pasa lo mismo con el lenguaje de programación. Estaremos indicando qué, cómo y cuándo hará una acción. ***¿Qué dices, los ponemos a prueba?***
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 // Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
