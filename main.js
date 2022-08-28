@@ -345,6 +345,33 @@ if (msg.body.startsWith('EnviarOpciones ')) {
         client.sendMessage(number, listaSaludo2)
     }
 }
+if (msg.body.startsWith('!enviar ')) {
+    // Direct send a new message to specific id
+    var number = msg.body.split(' ')[1];
+    var messageIndex = msg.body.indexOf(number) + number.length;
+    // Index es la cantidad de caracteres que tiene el string,
+    /*
+    en msg.body.indexOf(number) quiere decir desde el inicio del mensaje
+    hasta el límite que es number, aquí se cuentan los espacios y luego
+    se suma con la catidad de carácteres de number
+    /** */
+    var message = msg.body.slice(messageIndex, msg.body.length);
+    /*
+    Aquí slice es como decir salgo, desde slice(inicio, final) y todo 
+    en caracteres, por eso dice lenght, ya que cuenta los carácteres
+    del string
+    /** */
+    number = number.includes('@c.us') ? number : `${number}@c.us`;
+    /**
+    .includes quiere decir si hay algo dentro de la string, de forma
+    que si existe, (condición) ? valor1:valor2. Y si no tiene, se le 
+    añade
+     */
+    var chat = await msg.getChat();
+    // Returns the Chat this message was sent in
+    chat.sendSeen();
+    client.sendMessage(number, `[Respuesta Recibida] ${message}`)
+}
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 if (msg.body.startsWith('/imc ')) {
 //  └──────────────────────────────────────────────────────────────────────────────┘
