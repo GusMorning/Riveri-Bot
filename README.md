@@ -108,6 +108,9 @@ let miPesoConvertido = miPeso + kilogramos;
 ║ 69 kg         
 ╚═════════╝
 ```
+3. `boolean`: Aplica cuando el valor de variable es `true` o `false`, ¿Qué quiere decir esto? Observemos: \
+    - Si nos dicen que `Pedro tiene la misma edad que Jaimito, entonces si digo Jaimito tiene la misma edad que Pedro`. Estaré diciendo algo **verdadero** o **true**
+    - Pero si digo: `Entonces, Jaimito es mayor que Pedro` contará como **falso** o **false**.
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 // Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
