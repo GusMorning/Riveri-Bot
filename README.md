@@ -191,22 +191,38 @@ console.log(alumnos)
 "*Si sales con bajas notas*, te castigo", hay un **condicional** "si sales con bajas notas" y una **consecuencia** "te castigo". Ahora volvamos esto a código!
 ``` ts
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
-let saliBajoDeNotas = true; // Esto quiere decir que sí, salió bajo de saliBajoDeNotas
+let saliBajoDeNotas = true; // Esto quiere decir que sí, salió bajo de notas
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
 //  :: if tiene una estructura así: if(condicional){¿Qué harás si ocurre eso?}
     if(saliBajoDeNotas = true) {
         console.log("Te castigaron")} 
-//  Aquí se observa que se creó una condicional donde si saliasbajo de notas, se 
+//  Aquí se observa que se creó una condicional donde si salias bajo de notas, se 
 //   imprimia en la consola "Te castigaron"
 //  └───────────────────────────────────────────────────────────────────────────────────┘
-
 ``` 
+> ##### Consejo: En javascript se utilizan los simbolos matemáticos como `suma + ` `resta - ` a los que llamaremos Operadores lógicos, y aquí tendrás la tabla completa de ellos:
 
-
-
-    
-
+| Nombre | Operador abreviado	| Significado |
+| ------------- | ------------- | ------------- |
+| Asignación | x = y | x = y |
+| Asignación de adición | x += y | x = x + y |
+| Asignación de resta | x -= y | x = x - y |
+| Asignación de multiplicación | x *= y | x = x * y |
+| Asignación de división | x /= y | x = x / y |
+| Asignación de residuo | x %= y | 	x = x % y |
+| Asignación de exponenciación | x **= y | x = x ** y|
+| Asignación de desplazamiento a la izquierda | x <<= y | x = x << y |
+| Asignación de desplazamiento a la derecha | x >>= y | x = x >> y |
+| Asignación AND lógico | x &&= y | x && (x = y) |
+#####  Operadores de comparación
+| Operador | Descripción | Ejemplos que devuelven true |
+| ------------- | ------------- | ------------- |
+| Igual (==) | 	Devuelve true si los operandos son iguales. | 3 == var1 ; "3" == var1 ; 3 == '3'|
+| | | |
+| | | |
+| | | |
+| | | |
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
