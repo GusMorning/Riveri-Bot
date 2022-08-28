@@ -133,8 +133,8 @@ var suma1 = + 1;
 > ##### Consejo:  Javascript es case sensitive, es decir detecta las mayúsculas y minusculas, espacios y caracteres especiales, afectando así a los nombres de las variables. Ahora, **¿Cómo es la forma correcta de hacerlo?**:
 1. `declarando sin espacios intermedios`:\
     :heavy_check_mark: `let miVariable = "Hola!"`.\
-    :cross_mark: `let mi variable = "Hola!"`.\
-    
+    ❌ `let mi variable = "Hola!"`.\
+
 
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
