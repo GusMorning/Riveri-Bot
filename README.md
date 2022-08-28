@@ -36,6 +36,5 @@ Recibirás la presentación de nuestro Municipio Escolar con una imagen referenc
 Recibirás el `documento` en pdf del Plan Evolutivo del año 2022:\
 `Comando: Plan evolutivo`:
 ![Imagen_Plan_Evolutivo](https://i.postimg.cc/BvPxvZvQ/2147483648-210508.jpg)
-
-# ![Imagen_Framework](https://i.postimg.cc/0NVtQzQw/Riveri-Bo1t.png)
 # Framework para la creación de Bots
+# ![Imagen_Framework](https://i.postimg.cc/0NVtQzQw/Riveri-Bo1t.png)
