@@ -38,3 +38,52 @@ Recibirás el `documento` en pdf del Plan Evolutivo del año 2022:\
 ![Imagen_Plan_Evolutivo](https://i.postimg.cc/BvPxvZvQ/2147483648-210508.jpg)
 # Framework para la creación de Bots
 # ![Imagen_Framework](https://i.postimg.cc/0NVtQzQw/Riveri-Bo1t.png)
+## 1. Creación de la sesión de WhatsApp:
+``` ts
+// Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
+const { Client, LocalAuth } = require('whatsapp-web.js');
+const qrcode = require("qrcode-terminal");
+
+const client = new Client({authStrategy: new LocalAuth(), puppeteer: {headless: false}});
+
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+    /* [0] */ // empezarAuntenticacion(); // Se inicia la sesión del bot, en caso de no    │
+//  │ estar auntenticado se pide el escaneo del QR. Posteriormente se envía un mensaje  │
+//  │ al grupo "StatusBot" de encendido, luego envía una confirmación a la consola      │
+//  │ junto con una tabla.                                                              │
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+function empezarAuntenticacion(){
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
+    //  │ Generación del Código QR :::::::::::::::::::::::::::::::::::::::::::::::::::::::::│
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+        client.on("qr", (qr) => {
+        console.log("[+]Test: QR Listo!");
+        qrcode.generate(qr, {
+        small: true
+        })});
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
+    //  │ Autenticación del cliente correcta :::::::::::::::::::::::::::::::::::::::::::::::│
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+        client.on('authenticated', () => {
+        console.log("[+] Prueba: Auntenticado " + "realizado con éxito".green.italic)});
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
+    //  │ Autenticación fallida ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::│
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+        client.on('auth_failure', msg => {console.log("Test: Auntenticado Fallido!", msg)});
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
+    //  │ Preparación lista del cliente ::::::::::::::::::::::::::::::::::::::::::::::::::::│
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+        client.on("ready", () => {
+        console.log("[+] Prueba: Encendido " + "realizado con éxito".green.italic)});
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+        client.initialize();
+    //  └───────────────────────────────────────────────────────────────────────────────────┘
+    };
+
+    empezarAuntenticacion()
+
+``` 
