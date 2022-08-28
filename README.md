@@ -113,11 +113,22 @@ let miPesoConvertido = miPeso + kilogramos;
     - Pero si digo: `Entonces, Jaimito es mayor que Pedro` contará como **falso** o **false**.
 
 > ##### Consejo: ¿Cuáles son los tipos de formas de declarar una variable?
-1. Usando `const`: Esta es una de las más importantes, pues indicará que el valor de la varaible no podrá cambiar y será usado en todo el código.
+1. Usando `const`: Esta es una de las más importantes, pues indicará que el valor de la variable no podrá cambiar y será usado en todo el código.
     Es especialmente útil para cuando busquemos usar una librería o Framework para declarar un valor de ellas, por ejemplo:\
     `const colors = require('colors');`\
     En este fragmento de código hemos llamado a la librería [colors](https://www.npmjs.com/package/colors) la cual se utiliza frecuentemente para darle colores a nuestros comandos dentro de la consola.
-
+2. Usando `var`: Nos sirve jerarquicamente para definir variables las cuales sus valores pueden variar, como aquí:
+```js
+var numero1 = 2;
+var numero2 = 4;
+var suma = numero1 + numero2;
+var suma1 = + 1;
+╔═════════╗
+║ Consola  
+╠═════════╣
+║ 7         
+╚═════════╝
+```
 
 
 
