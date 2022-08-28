@@ -4,6 +4,7 @@
 - [¿Cómo usarlo?](#Guia_de_uso)
 - [Creditos](#Agradecimientos)
 - [Framework](#Framework)
+- [Esquema](#Esquema_Didactico_Del_Bot)
 # Presentación
 Riveri-Bot es un chat-bot de ayuda para difundir información relevante del Municipio Escolar para la I.E "Nicanor Rivera Cáceres" 7050.
 - Su desarollo empezó desde `Enero del 2022`
@@ -286,7 +287,7 @@ function empezarAuntenticacion(){
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Autenticación fallida ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::│
     //  └───────────────────────────────────────────────────────────────────────────────────┘
-        client.on('auth_failure', msg => {console.log("Test: Auntenticado Fallido!", msg)});
+        client.on('auth_failure', msg => {console.log("Test: Autenticado Fallido!", msg)});
     //  └───────────────────────────────────────────────────────────────────────────────────┘
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Preparación lista del cliente ::::::::::::::::::::::::::::::::::::::::::::::::::::│
@@ -303,3 +304,5 @@ function empezarAuntenticacion(){
     empezarAuntenticacion()
 
 ``` 
+# Esquema didáctico en el Bot
+![imagen_esquema](https://i.postimg.cc/KcPBJYkT/riveri-bot-esquema-drawio.png)
