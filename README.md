@@ -306,4 +306,5 @@ function empezarAuntenticacion(){
 ``` 
 # Esquema didáctico en el Bot
 ![imagen_esquema](https://i.postimg.cc/KcPBJYkT/riveri-bot-esquema-drawio.png)
-<a href='https://postimg.cc/7bL5LwNP' target='_blank'><img src='https://i.postimg.cc/7bL5LwNP/riveri-bot-esquema-drawio.png' border='0' alt='riveri-bot-esquema-drawio'/></a>
+![riveri-bot_esquema drawio](https://user-images.githubusercontent.com/100885703/187082582-b521772c-bce4-46d8-9fd6-552f50beaeb5.png)
+
