@@ -117,7 +117,7 @@ let miPesoConvertido = miPeso + kilogramos;
     Es especialmente útil para cuando busquemos usar una librería o Framework para declarar un valor de ellas, por ejemplo:\
     `const colors = require('colors');`\
     En este fragmento de código hemos llamado a la librería [colors](https://www.npmjs.com/package/colors) la cual se utiliza frecuentemente para darle colores a nuestros comandos dentro de la consola.
-2. Usando `var`: Nos sirve jerarquicamente para definir variables las cuales sus valores pueden variar, como aquí:
+2. Usando `var` y `let`: Nos sirve jerarquicamente para definir variables las cuales sus valores pueden variar, como aquí:
 ```js
 var numero1 = 2;
 var numero2 = 4;
