@@ -132,17 +132,95 @@ var suma1 = + 1;
 
 > ##### Consejo:  Javascript es case sensitive, es decir detecta las mayúsculas y minusculas, espacios y caracteres especiales, afectando así a los nombres de las variables. Ahora, **¿Cómo es la forma correcta de hacerlo?**:
 1. `declarando sin espacios intermedios`:\
-    :heavy_check_mark: `let miVariable = "Hola!"`.\
-    ❌ `let mi variable = "Hola!"`.\
 
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| :heavy_check_mark: | `let miVariable = "Hola!"`.|
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| ❌ | `let mi variable = "Hola!"`|
+2. Respestando las `mayúsculas` y `minusculas`:
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| :heavy_check_mark: | `let; for; switch; var; console.log; if; else if`.|
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| ❌ | `let mi variable = "LET; foR; Switch; Var; Console.log, iF; Else if`.`|
+    
+3. Terminando de cerrar los `caracteres`:
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| let texto = "Hola!"  | :heavy_check_mark: |
+| let texto = "hola  | ❌  |
+| let texto = 'Hola!'  | :heavy_check_mark: |
+| let texto = Hola!  | ❌ |
+| console.log(texto)  | :heavy_check_mark: |
+| console.log(texto   | ❌ |
+| console.log("texto")  | :heavy_check_mark: |
+| console.log("texto)  | ❌ |
+
+> ##### Consejo: ¿Cómo manejar los Array? Un `Array` es aquel conjunto de elementos o valores dentro de una variable, como en el ejemplo:
+- Puedes verlo como una analogía a una pildora, en su interior lleva un conteindo encapsulado y así lo mismo pasa con los arrays:
+```js
+// Ejemplo:
+let alumnos = (
+    {capsula 1},
+    {capsula 2}
+)
+// Aplicación
+let alumnos = (
+    {
+        nombre: "Pedro",
+        edad: "17",
+        residencia: "Etiopia"
+    },
+    {
+        nombre: "Juanito",
+        edad: "16",
+        residenia: "Paises Bajos"
+    }
+)
+console.log(alumnos)
+```
+> #### Consejo: El manejo de if, aquí necesitarás un poco de atención pues tiene un concepto nuevo:
+- `if` quiere decir, `qué pasaría si?`. Veamos una analogía de una frase que reconocerán:
+"*Si sales con bajas notas*, te castigo", hay un **condicional** "si sales con bajas notas" y una **consecuencia** "te castigo". Ahora volvamos esto a código!
+``` ts
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+let saliBajoDeNotas = true; // Esto quiere decir que sí, salió bajo de saliBajoDeNotas
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  :: if tiene una estructura así: if(condicional){¿Qué harás si ocurre eso?}
+    if(saliBajoDeNotas = true) {
+        console.log("Te castigaron")} 
+//  Aquí se observa que se creó una condicional donde si saliasbajo de notas, se 
+//   imprimia en la consola "Te castigaron"
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+
+``` 
+
+
+
+    
 
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
-// Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  ::::::::::: Definimos la librería whatsapp-web.js de pedrolopez
 const { Client, LocalAuth } = require('whatsapp-web.js');
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  ::::::: Importamos la librería que nos permitirá imprimir un código QR en a consola para iniciar sesión
 const qrcode = require("qrcode-terminal");
-
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  ::::: Declaramos una variable lamada client, que será de importancia pues la usaremos para todas las funciones que creemos, como iniiciar sesión, recibir mensajes, encender el bot, etc
 const client = new Client({authStrategy: new LocalAuth(), puppeteer: {headless: false}});
+//  └───────────────────────────────────────────────────────────────────────────────────┘
 
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     /* [0] */ // empezarAuntenticacion(); // Se inicia la sesión del bot, en caso de no    │
