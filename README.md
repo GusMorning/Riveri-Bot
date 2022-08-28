@@ -226,6 +226,22 @@ let saliBajoDeNotas = true; // Esto quiere decir que sí, salió bajo de notas
 | Mayor o igual que (>=) | Devuelve true si el operando izquierdo es mayor o igual que el operando derecho. | var2 >= var1 ; var1 >= 3 |
 | Menor que (<) | Devuelve true si el operando izquierdo es menor que el operando derecho. | var1 < var2 ; "2" < 12|
 | Menor o igual (<=) | Devuelve true si el operando izquierdo es menor o igual que el operando derecho. | var1 <= var2 ; var2 <= 5 |
+
+> ##### Consejo: ¿Cómo usar `function`? Una vez hayas comprendido el uso de `if` esta parte te será rápido de entender. Así que pongamoslo a prueba!
+- La estructura de function consta de lo siguiente:\
+`function nombreDeLaVariable( Dato interior que se procesará dentro ) {
+    dato interior que será procesado aquí }`
+¿Qué dices, facilito no? 
+- Prueba 03: Vamos a elaborar una cálculadora automática de área de un cuadrado donde podamos ingresar los datos del lado.
+```js 
+function calcularArea(lado){
+    let area = lado * lado;
+    console.log("El resultado del área es: ", area, " m2") // Aquí se muestra en consola el resultado
+    return area
+}
+calcularArea(5) // Resultado = El resultado del área es:  25  m2
+```
+
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
