@@ -237,7 +237,16 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require("qrcode-terminal");
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
-//  ::::: Declaramos una variable lamada client, que será de importancia pues la usaremos para todas las funciones que creemos, como iniiciar sesión, recibir mensajes, encender el bot, etc
+//  ::::: Declaramos una variable llamada client, que será de importancia pues la usaremos para todas las funciones que creemos, como iniiciar sesión, recibir mensajes, encender el bot, etc
+/* 
+client tiene varios aspectos como:
+client.on 'authenticated': comienza el inicio y escaneo de la sesión actual.
+client.on 'auth_failure': ocurre si el inicio de sesión es incorrecto o erroneo.
+client 'initialize': para finalizar el proceso de inicio de sesión, y comenzar a utilizar el código.
+client.on 'ready': cuando el cliente está listo para recibir mensjaes
+
+
+/*
 const client = new Client({authStrategy: new LocalAuth(), puppeteer: {headless: false}});
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 
