@@ -95,7 +95,7 @@ console.log(suma)
 2. `number`: Aquí solo aplicarán cuando a la variable que tengamos le asignemos solo valores numericos. Por ejemplo:\
     `let alturaEnMetros = 1.86`\
     Algo interesante, ¿Cómo puedo unir una variable `number` con una `string`? ¡Excelente pregunta!
-    ```js
+ ```js
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
 let miPeso = 69;
 let kilogramos = "kg";
