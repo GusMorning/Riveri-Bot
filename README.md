@@ -85,6 +85,15 @@ console.log(suma)
 ║ 6         
 ╚═════════╝
 ```
+¡Wow, estás avanzando rápido! Pronto bucearás con los tuborones del Javascript, ya te veré.
+> Consejo: Existen tres tipos de `variables`:
+1. `string`: Es para asignarle texto a nuestra variable como valor.\
+    `let miNombre = "Gustavo"`\
+    Aún así, ¿Solo son `strings` aquella variables que tienen texto? **No** pero ya lo estas comprendiendo. Independientemente que pudiera ser texto, tiene la capacidad de representar un número, veamos:\
+    `let miEdad = "17"`
+    Pero... ¿Si son números, los puedo sumar? **No**, ya que el sistema lo detecta como si fuera una letra, más no un número por ende si lo intentas te dará error. 
+2. `number`: Aquí solo aplicarán cuando a la variable que tengamos le asignemos solo valores numericos. Por ejemplo:\
+    `let alturaEnMetros = 1.86`
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 // Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
