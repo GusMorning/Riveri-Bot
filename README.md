@@ -40,11 +40,29 @@ Recibirás el `documento` en pdf del Plan Evolutivo del año 2022:\
 # ![Imagen_Framework](https://i.postimg.cc/0NVtQzQw/Riveri-Bo1t.png)
 ## Las bases: ¿Qué es un lenguaje de programación y cómo lo usaremos?
 - Es una serie de instrucciones que indicamos a la máquina para realizar en secuencia (Queriendo decir de forma organizada), utilizan una sintaxis referencia del inglés, por lo que encontrarás expresiones en Javascript como:
+
 ```js
 if = Quiere decir "Si esto ocurre", sacado de la palabra en inglés
 ```
+
 > Si no se comprende del todo, no hay problema. Continua prestando atencion y lo entenderás completamente
-- Entonces, tal como si ordenaramos a la computadora que hiciera algo, pasa lo mismo con el lenguaje de programación. Estaremos indicando qué, cómo y cuándo hará una acción. ***¿Qué dices, los ponemos a prueba?***
+Entonces, tal como si ordenaramos a la computadora que hiciera algo, pasa lo mismo con el lenguaje de programación. Estaremos indicando qué, cómo y cuándo hará una acción. ***¿Qué dices, los ponemos a prueba?***
+- Prueba 01: Queremos sumar dos números, y saber su resultado. ¿Cómo lo haremos?
+> Consejo: `let` quiere decir que vas a darle valor a algo, en este caso se llama `variable`. Como si hicieras una ecuación, vamos a estar dándole el valor a una incognita `x` lo mismo pasará aquí con una variable:
+```js
+//  ┌─────────────────────────────Declarando el primer valor─────────────────────────────┐
+// - Tenemos la primera variable o incognita al que le asignaremos un valor:
+let numero1 = 2
+// - Es decir, numero1 va a ser igual a 2 unidades.
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────Declarando el segundo valor─────────────────────────────┐
+// - Tenemos la segunda variable o incognita al que le asignaremos un valor:
+let numero1 = 4
+// - Es decir, numero2 va a ser igual a 4 unidades.
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+```
+Ahora, si te dijera esta oración: `Si x es igual a 2 y z es igual a 4, ¿cuánto suman x + y? La respuesta sería 6, lo mismo con el código que hicimos arriba`:
+
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
 // Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
