@@ -4,6 +4,7 @@
 - [¿Cómo usarlo?](#Guia_de_uso)
 - [Creditos](#Agradecimientos)
 - [Framework](#Framework)
+- [Esquema](#Esquema_Didactico_Del_Bot)
 # Presentación
 Riveri-Bot es un chat-bot de ayuda para difundir información relevante del Municipio Escolar para la I.E "Nicanor Rivera Cáceres" 7050.
 - Su desarollo empezó desde `Enero del 2022`
@@ -132,34 +133,150 @@ var suma1 = + 1;
 
 > ##### Consejo:  Javascript es case sensitive, es decir detecta las mayúsculas y minusculas, espacios y caracteres especiales, afectando así a los nombres de las variables. Ahora, **¿Cómo es la forma correcta de hacerlo?**:
 1. `declarando sin espacios intermedios`:\
-    :heavy_check_mark: `let miVariable = "Hola!"`.\
-    :cross_mark: `let mi variable = "Hola!"`.\
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| :heavy_check_mark: | `let miVariable = "Hola!"`.|
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| ❌ | `let mi variable = "Hola!"`|
+2. Respestando las `mayúsculas` y `minusculas`:
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| :heavy_check_mark: | `let; for; switch; var; console.log; if; else if`.|
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| ❌ | `let mi variable = "LET; foR; Switch; Var; Console.log, iF; Else if`.`|
     
+3. Terminando de cerrar los `caracteres`:
+
+| Expresión | Correcto o incorrecto |
+| ------------- | ------------- |
+| let texto = "Hola!"  | :heavy_check_mark: |
+| let texto = "hola  | ❌  |
+| let texto = 'Hola!'  | :heavy_check_mark: |
+| let texto = Hola!  | ❌ |
+| console.log(texto)  | :heavy_check_mark: |
+| console.log(texto   | ❌ |
+| console.log("texto")  | :heavy_check_mark: |
+| console.log("texto)  | ❌ |
+
+> ##### Consejo: ¿Cómo manejar los Array? Un `Array` es aquel conjunto de elementos o valores dentro de una variable, como en el ejemplo:
+- Puedes verlo como una analogía a una pildora, en su interior lleva un conteindo encapsulado y así lo mismo pasa con los arrays:
+```js
+// Ejemplo:
+let alumnos = (
+    {capsula 1},
+    {capsula 2}
+)
+// Aplicación
+let alumnos = (
+    {
+        nombre: "Pedro",
+        edad: "17",
+        residencia: "Etiopia"
+    },
+    {
+        nombre: "Juanito",
+        edad: "16",
+        residenia: "Paises Bajos"
+    }
+)
+console.log(alumnos)
+```
+> #### Consejo: El manejo de if, aquí necesitarás un poco de atención pues tiene un concepto nuevo:
+- `if` quiere decir, `qué pasaría si?`. Veamos una analogía de una frase que reconocerán:
+"*Si sales con bajas notas*, te castigo", hay un **condicional** "si sales con bajas notas" y una **consecuencia** "te castigo". Ahora volvamos esto a código!
+``` ts
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+let saliBajoDeNotas = true; // Esto quiere decir que sí, salió bajo de notas
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  :: if tiene una estructura así: if(condicional){¿Qué harás si ocurre eso?}
+    if(saliBajoDeNotas = true) {
+        console.log("Te castigaron")} 
+//  Aquí se observa que se creó una condicional donde si salias bajo de notas, se 
+//   imprimia en la consola "Te castigaron"
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+``` 
+> ##### Consejo: En javascript se utilizan los simbolos matemáticos como `suma + ` `resta - ` a los que llamaremos Operadores lógicos, y aquí tendrás la tabla completa de ellos:
+
+| Nombre | Operador abreviado	| Significado |
+| ------------- | ------------- | ------------- |
+| Asignación | x = y | x = y |
+| Asignación de adición | x += y | x = x + y |
+| Asignación de resta | x -= y | x = x - y |
+| Asignación de multiplicación | x *= y | x = x * y |
+| Asignación de división | x /= y | x = x / y |
+| Asignación de residuo | x %= y | 	x = x % y |
+| Asignación de exponenciación | x **= y | x = x ** y|
+| Asignación de desplazamiento a la izquierda | x <<= y | x = x << y |
+| Asignación de desplazamiento a la derecha | x >>= y | x = x >> y |
+| Asignación AND lógico | x &&= y | x && (x = y) |
+#####  Operadores de comparación
+| Operador | Descripción | Ejemplos que devuelven true |
+| ------------- | ------------- | ------------- |
+| Igual (==) | 	Devuelve true si los operandos son iguales. | 3 == var1 ; "3" == var1 ; 3 == '3'|
+| No es igual (!=) | Devuelve true si los operandos no son iguales. | var1 != 4 ; var2 != "3" |
+| Estrictamente igual (===) | Devuelve true si los operandos son iguales y del mismo tipo. Consulta también Object.is y similitud en JS. | 3 === var1 |
+| Desigualdad estricta (!==) | Devuelve true si los operandos son del mismo tipo pero no iguales, o son de diferente tipo. | var1 !== "3" ; 3 !== '3' |
+| Mayor que (>) | Devuelve true si el operando izquierdo es mayor que el operando derecho. | var2 > var1 ; "12" > 2 |
+| Mayor o igual que (>=) | Devuelve true si el operando izquierdo es mayor o igual que el operando derecho. | var2 >= var1 ; var1 >= 3 |
+| Menor que (<) | Devuelve true si el operando izquierdo es menor que el operando derecho. | var1 < var2 ; "2" < 12|
+| Menor o igual (<=) | Devuelve true si el operando izquierdo es menor o igual que el operando derecho. | var1 <= var2 ; var2 <= 5 |
+
+> ##### Consejo: ¿Cómo usar `function`? Una vez hayas comprendido el uso de `if` esta parte te será rápido de entender. Así que pongamoslo a prueba!
+- La estructura de function consta de lo siguiente:\
+`function nombreDeLaVariable( Dato interior que se procesará dentro ) {
+    dato interior que será procesado aquí }`
+¿Qué dices, facilito no? 
+- Prueba 03: Vamos a elaborar una cálculadora automática de área de un cuadrado donde podamos ingresar los datos del lado.
+```js 
+function calcularArea(lado){
+    let area = lado * lado;
+    console.log("El resultado del área es: ", area, " m2") // Aquí se muestra en consola el resultado
+    return area
+}
+calcularArea(5) // Resultado = El resultado del área es:  25  m2
+```
 
 ## 1. Creación de la sesión de WhatsApp:
 ``` ts
-// Usamos Javascript y NodeJS para crear el entorno de trabajo de programación, ambos son lenguajes de programación. Por lo tanto usaremos su sintaxis como a continuación:
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  ::::::::::: Definimos la librería whatsapp-web.js de pedrolopez
 const { Client, LocalAuth } = require('whatsapp-web.js');
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  ::::::: Importamos la librería que nos permitirá imprimir un código QR en a consola para iniciar sesión
 const qrcode = require("qrcode-terminal");
-
+//  └───────────────────────────────────────────────────────────────────────────────────┘
+//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+//  ::::: Declaramos una variable llamada client, que será de importancia pues la usaremos para todas las funciones que creemos, como iniiciar sesión, recibir mensajes, encender el bot, etc
+/* 
+client tiene varios aspectos como:
+client.on 'authenticated': comienza el inicio y escaneo de la sesión actual.
+client.on 'auth_failure': ocurre si el inicio de sesión es incorrecto o erroneo.
+client 'initialize': para finalizar el proceso de inicio de sesión, y comenzar a utilizar el código.
+client.on 'ready': cuando el cliente está listo para recibir mensajes
+/*
 const client = new Client({authStrategy: new LocalAuth(), puppeteer: {headless: false}});
+//  └───────────────────────────────────────────────────────────────────────────────────┘
 
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     /* [0] */ // empezarAuntenticacion(); // Se inicia la sesión del bot, en caso de no    │
-//  │ estar auntenticado se pide el escaneo del QR. Posteriormente se envía un mensaje  │
-//  │ al grupo "StatusBot" de encendido, luego envía una confirmación a la consola      │
-//  │ junto con una tabla.                                                              │
+//  │ estar auntenticado se pide el escaneo del QR. 
 //  └───────────────────────────────────────────────────────────────────────────────────┘
-//  ┌───────────────────────────────────────────────────────────────────────────────────┐
+
 function empezarAuntenticacion(){
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Generación del Código QR :::::::::::::::::::::::::::::::::::::::::::::::::::::::::│
     //  └───────────────────────────────────────────────────────────────────────────────────┘
         client.on("qr", (qr) => {
         console.log("[+]Test: QR Listo!");
-        qrcode.generate(qr, {
-        small: true
-        })});
+        qrcode.generate(qr, {small: true})});
     //  └───────────────────────────────────────────────────────────────────────────────────┘
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Autenticación del cliente correcta :::::::::::::::::::::::::::::::::::::::::::::::│
@@ -170,14 +287,16 @@ function empezarAuntenticacion(){
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Autenticación fallida ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::│
     //  └───────────────────────────────────────────────────────────────────────────────────┘
-        client.on('auth_failure', msg => {console.log("Test: Auntenticado Fallido!", msg)});
+        client.on('auth_failure', msg => {console.log("Test: Autenticado Fallido!", msg)});
     //  └───────────────────────────────────────────────────────────────────────────────────┘
     //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     //  │ Preparación lista del cliente ::::::::::::::::::::::::::::::::::::::::::::::::::::│
     //  └───────────────────────────────────────────────────────────────────────────────────┘
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
         client.on("ready", () => {
         console.log("[+] Prueba: Encendido " + "realizado con éxito".green.italic)});
     //  └───────────────────────────────────────────────────────────────────────────────────┘
+    //  ┌───────────────────────────────────────────────────────────────────────────────────┐
         client.initialize();
     //  └───────────────────────────────────────────────────────────────────────────────────┘
     };
@@ -185,3 +304,6 @@ function empezarAuntenticacion(){
     empezarAuntenticacion()
 
 ``` 
+# Esquema didáctico en el Bot
+![riveri-bot_esquema drawio](https://user-images.githubusercontent.com/100885703/187082582-b521772c-bce4-46d8-9fd6-552f50beaeb5.png)
+
