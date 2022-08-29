@@ -228,6 +228,9 @@ switch(msg.body){
     case 'ola':
         client.sendMessage(message.from, botMenu);
         break;
+    case 'msg':
+        client.sendMessage(message.from, msg)
+        break;
     case 'Opciones':
         client.sendMessage(message.from, listaOpciones);
         break;
