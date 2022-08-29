@@ -230,6 +230,7 @@ switch(msg.body){
         break;
     case 'msg':
         client.sendMessage(message.from, msg)
+        console.log(msg)
         break;
     case 'Opciones':
         client.sendMessage(message.from, listaOpciones);
