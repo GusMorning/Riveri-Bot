@@ -70,7 +70,14 @@ const {
     /* [5] */ mensajesEntrantes, //── Envia los mensajes entrantes a un bot :::::: │
     /* [6] */ calcularIMC, //── Ubicación y texto de Calculadora de IMC :::::::::: │
     /* [7] */ planEvolutivo, //── Ubicación de Plan Evolutiv [Plan Evolutivo] :::: │
-    /* [8] */ chistesFuncion, //---
+    /* [8] */ chistesFuncion,
+    saludoNuevoBoton,
+    saludoNuevo,
+    saludoNuevoBoton1,
+    botonProblema1,
+    botonIntroduccion,
+    botones,
+    botonProblema2, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
 /* 
@@ -97,6 +104,7 @@ const {
     /* [2] */ const qrcode = require("qrcode-terminal");
     /* [3] */ const { Puppeteer } = require("puppeteer");
     /* [4] */ const ProgressBar = require('progress');
+const { measureMemory } = require("vm");
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 //* │                          Definiciones para funciones                         │
@@ -219,6 +227,45 @@ client.on("message", async (message) => {
             }, DELAY_TIME);
         };
 //  └──────────────────────────────────────────────────────────────────────────────┘
+// Comienzo de la nueva actualización del bot:
+console.log("[+] Test Actualización 1:", " Correcto".green.italic);
+if (msg.body.startsWith('pruebaMensaje')) {
+    console.log(msg);
+} 
+else if (msg.body.startsWith('saludoNuevo')) {
+    enviarMedia(botones.ubicacionSaludo);
+    client.sendMessage(msg.from, saludoNuevoBoton);
+}
+else if (msg.body.startsWith('✅ Introducción')) {
+    client.sendMessage(msg.from, botonIntroduccion);
+}
+else if (msg.body.startsWith('Problemática 1️⃣')) {
+    client.sendMessage(msg.from, botonProblema1);
+    enviarMedia(botones.ubicacionProblema1);
+}
+else if (msg.body.startsWith('Problemática 2️⃣')) {
+    client.sendMessage(msg.from, botonProblema2)
+    enviarMedia(botones.ubicacionProblema2)
+}
+else if (msg.body.startsWith('Problematica 3️⃣')) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 switch(msg.body){
 //  └──────────────────────────────────────────────────────────────────────────────┘
