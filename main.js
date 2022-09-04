@@ -88,7 +88,11 @@ const {
     radioCuadrado,
     baseAltura,
     areaTriangulo,
-    sumaDeLados, //---
+    sumaDeLados,
+    leyHeron,
+    calcularAlturaTriangulo,
+    calcularHipotenusa,
+    calcularCateto, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
 /* 
@@ -328,20 +332,57 @@ else if (msg.body.startsWith('/PerimetroTriangulo ')) {
     let a = msg.body.split(' ')[2];
     let b = msg.body.split(' ')[3];
     let c = msg.body.split(' ')[4];
-    a = a*1;
-    b = b*1;
-    c = c*1;
+    a = parseFloat(a);
+    b = parseFloat(b);
+    c = parseFloat(c);
     if (clasificacion === 'Todos') {
         let suma = Number(a) + Number(b) + Number(c)
         client.sendMessage(msg.from, `Hola, la suma es: ${suma}`)
     } else if (clasificacion === 'Heron') {
-/* -------------------------- S=√(p(p-a)(p-b)(p-c)) ------------------------- */
-        let s = ( a + b + c) / 2;
-        let area = Math.sqrt(s (s - a)(s - b)(p - c));
-        client.sendMessage(msg.from, `Hola, la area es: ${area}`)
+        let area1 = leyHeron(a, b, c)
+        client.sendMessage(msg.from, `Hola, la area es: ${area1}`)
     }
 }
-
+else if (msg.body.startsWith('/Calculo')){
+    let figura = msg.body.split(' ')[1];
+    let clasificacion = msg.body.split(' ')[2];
+    let a = msg.body.split(' ')[3];
+    let b = msg.body.split(' ')[4];
+    let c = msg.body.split(' ')[5];
+    a = parseFloat(a);
+    b = parseFloat(b);
+    c = parseFloat(c);
+    if (figura === 'Triangulo') {
+        if (clasificacion === 'Heron') {
+            let area = leyHeron(a, b, c)
+            client.sendMessage(msg.from, 'Hola, la area es: ' + area)
+        };
+        if (clasificacion === 'Altura') {
+            let altura = calcularAlturaTriangulo(a, b, c);
+            client.sendMessage(msg.from, `Hola, la altura es: ` + altura)
+        };
+        if (clasificacion === 'Area') {
+        /* --------------- /Calculo Triangulo Area [a=base] [b=altura] -------------- */
+            let area = areaTriangulo(a, b);
+            let basePorAltura = baseAltura(a, b);
+            client.sendMessage(msg.from, `Hola, el area es: ${area}`)
+        };
+        if (clasificacion === 'Hipotenusa') {
+            let hipotenusa = calcularHipotenusa(a, b)
+            client.sendMessage(msg.from, `Hola, la hipotenusa es: ${hipotenusa}`)
+        };
+        if (clasificacion === 'Cateto') {
+        /* ----------- /Calculo Triangulo Cateto [a=hipotenusa] [b=cateto] ---------- */
+            let cateto = calcularCateto(a, b);
+            client.sendMessage(msg.from, `Hola, el cateto faltante es: ${cateto}`)
+        }
+    }
+    else if (figura === 'Fisica'){
+        if (clasificacion === 'Velocidad') {
+            
+        }
+    }
+}
 
 
 

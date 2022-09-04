@@ -358,8 +358,29 @@ function sumaDeLados(a, b, c) {
     let sumas =  (aP + bP) + cP;
     return sumas
 }
-
-
+function leyHeron(a, b, c) {
+    s = (a + b + c) / 2;
+    area1 = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    area1 = area1.toFixed(4)
+    return area1
+}
+function calcularAlturaTriangulo(a, b, c) {
+    s = (a + b + c) / 2;
+    area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    numeroMayor = Math.max(a, b, c);
+    h = (area * 2) / numeroMayor;
+    return h
+}
+function calcularHipotenusa(a, b) {
+    h = Math.sqrt((a**=2) + (b**=2))
+    return h
+}
+function calcularCateto(a, b) {
+    numeroMayor = Math.max(a, b);
+    numeroMenor = Math.min(a, b);
+    catetoX = Math.sqrt( (numeroMayor **= 2) - (numeroMenor **= 2));
+    return catetoX
+}
 
 
 
@@ -415,5 +436,9 @@ module.exports = {
     radioCuadrado,
     areaTriangulo,
     baseAltura,
-    sumaDeLados
+    sumaDeLados,
+    leyHeron,
+    calcularAlturaTriangulo,
+    calcularHipotenusa,
+    calcularCateto
 }
