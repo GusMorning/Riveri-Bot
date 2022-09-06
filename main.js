@@ -92,7 +92,8 @@ const {
     leyHeron,
     calcularAlturaTriangulo,
     calcularHipotenusa,
-    calcularCateto, //---
+    calcularCateto,
+    semiPerimetro, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
 /* 
@@ -243,7 +244,6 @@ client.on("message", async (message) => {
         };
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
-console.log("[+] Test Actualización 1:", " Correcto".green.italic);
 if (msg.body.startsWith('pruebaMensaje')) {
     console.log(msg);
 } 
@@ -343,38 +343,119 @@ else if (msg.body.startsWith('/PerimetroTriangulo ')) {
         client.sendMessage(msg.from, `Hola, la area es: ${area1}`)
     }
 }
-else if (msg.body.startsWith('/Calculo')){
+else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo')){
     let figura = msg.body.split(' ')[1];
     let clasificacion = msg.body.split(' ')[2];
     let a = msg.body.split(' ')[3];
     let b = msg.body.split(' ')[4];
     let c = msg.body.split(' ')[5];
+    let d = msg.body.split(' ')[6];
+    let e = msg.body.split(' ')[7];
     a = parseFloat(a);
     b = parseFloat(b);
     c = parseFloat(c);
-    if (figura === 'Triangulo') {
-        if (clasificacion === 'Heron') {
-            let area = leyHeron(a, b, c)
-            client.sendMessage(msg.from, 'Hola, la area es: ' + area)
+    const chat = await msg.getChat();
+    if (figura === 'Triangulo' || figura === 'triangulo' || figura === 'triángulo') {
+        if (clasificacion === 'Heron' || clasificacion === 'heron') {
+            chat.sendStateTyping();
+            let suma = Number(a) + Number(b) + Number(c);
+            let semiP = semiPerimetro(a, b, c);
+            let p = semiP;
+            let mensaje = `┌────────────┐\n├ *D A T O S ----------*\n└────────────┘\n┌────────────┐\n├ Lado a = ${a} cm\n├ Lado b = ${b} cm\n├ Lado c = ${c} cm\n├ Cálculo: Área de un triangulo \nsabiendo sus tres lados.\n└────────────┘\n┌────────────┐\n├ Formula:\n├ p = Semi perimetro\n├ p = ( a + b + c ) / 2\n├ p = ( ${a} + ${b} + ${c} ) / 2\n├ p = (${suma}) / 2\n├ p = ${semiP}\n└────────────┘\n├ S = √p (p - a) (p - b) (p - c)\n├ S = √${p} (${p} - ${a}) (${p} - ${b}) (${p} - ${c})\n├ S = ${area}\n├ Área = ${area} cm2\n└────────────┘`;
+            enviarMedia('./media/imagenCalcularAreaHeron.png', mensaje)
         };
-        if (clasificacion === 'Altura') {
+        if (clasificacion === 'Altura' || clasificacion === 'altura') {
+            chat.sendStateTyping();
             let altura = calcularAlturaTriangulo(a, b, c);
-            client.sendMessage(msg.from, `Hola, la altura es: ` + altura)
+            let suma = Number(a) + Number(b) + Number(c);
+            let semiP = semiPerimetro(a, b, c);
+            let p = semiP;
+            let mensaje = '┌────────────┐\n├ *D A T O S ----------*\n└────────────┘\n┌────────────┐\n├ Lado a = ' + a + ' cm\n├ Lado b = ' + b + ' cm\n├ Lado c = ' + c + ' cm\n├ Cálculo: Altura de un tríangulo\n├ sabiendo sus 3 lados\n└────────────┘\n┌────────────┐\n├ Formula:\n├ p = Semi perimetro\n├ p = ( a + b + c ) / 2\n├ p = ( ' + a + ' + ' + b + ' + ' + c + ' ) / 2\n├ p = (' + suma + ') / 2\n├ p = ' + semiP + '\n└────────────┘\n├ S = √p (p - a) (p - b) (p - c)\n├ S = √' + p + ' (' + p + ' - ' + a + ') (' + p + ' - ' + b + ') (' + p + ' - ' + c + ')\n├ S = ' + area + '\n├ Área = ' + area + ' cm2\n└────────────┘\n├ Area = base * altura / 2\n├ Altura = 2 * Área / base\n├ Altura = 2 * ' + area + ' / ' + (numeroMayor = Math.max(a, b, c)) + '\n├ Altura = ' + altura + ' cm\n└────────────┘\n┌────────────┐\n' + msg.body + '\n└────────────┘\n┌────────────┐\n- Euler-Bot©\n└────────────┘\n';
+            enviarMedia('./media/imagenCalculadoraAlturaTriangulo.png', mensaje)
         };
-        if (clasificacion === 'Area') {
+        if (clasificacion === 'Area' || clasificacion === 'area' || clasificacion === 'área' || clasificacion === 'Área') {
         /* --------------- /Calculo Triangulo Area [a=base] [b=altura] -------------- */
+            chat.sendStateTyping();
             let area = areaTriangulo(a, b);
             let basePorAltura = baseAltura(a, b);
-            client.sendMessage(msg.from, `Hola, el area es: ${area}`)
+            let mensaje = `┌────────────┐
+├ *D A T O S ----------*
+└────────────┘
+┌────────────┐
+├ *Base* = ${a} cm
+├ *Altura* = ${b} cm
+├ *Cálculo*: Área de un triangulo
+sabiendo su base y altura
+└────────────┘
+┌────────────┐
+├ Fórmula:
+├ *Área* = base * altura / 2
+├ *Área* = ${a} * ${b} / 2
+├ *Área* = ${basePorAltura} / 2
+├ *Área* = ${area} cm2
+└────────────┘
+┌────────────┐
+${msg.body}
+└────────────┘
+┌────────────┐
+- *Euler-Bot©*
+└────────────┘
+`;
+            enviarMedia('./media/imagenCalcularAreSabiendoBaseAltura.png', mensaje)
         };
-        if (clasificacion === 'Hipotenusa') {
-            let hipotenusa = calcularHipotenusa(a, b)
-            client.sendMessage(msg.from, `Hola, la hipotenusa es: ${hipotenusa}`)
+        if (clasificacion === 'Hipotenusa' || clasificacion === 'hipotenusa') {
+            let hipotenusa = calcularHipotenusa(a, b);
+            let mensaje = `┌────────────┐
+├ *D A T O S ----------*
+└────────────┘
+┌────────────┐
+├ *Cateto 1* = ${a}
+├ *Cateto 2* = ${b}
+├ *Cálculo*: 
+├ *Hipotenusa*
+└────────────┘
+┌────────────┐
+├ Fórmula:
+├ C^2 = a^2 + b^2
+├ C = √a^2 + b^2
+├ C = √${a **= 2} + ${b **= 2}
+├ C = ${hipotenusa}
+└────────────┘
+┌────────────┐
+${msg.body}
+└────────────┘
+┌────────────┐
+- *Euler-Bot©*
+└────────────┘
+`;
+            enviarMedia('./media/imagenCalculadoraHipotenusa.png', mensaje)
         };
-        if (clasificacion === 'Cateto') {
-        /* ----------- /Calculo Triangulo Cateto [a=hipotenusa] [b=cateto] ---------- */
+        if (clasificacion === 'Cateto' || clasificacion === 'cateto') {
             let cateto = calcularCateto(a, b);
-            client.sendMessage(msg.from, `Hola, el cateto faltante es: ${cateto}`)
+            let mensaje = `┌────────────┐
+├ *D A T O S ----------*
+└────────────┘
+┌────────────┐
+├ *Cateto* = ${Math.min(a, b)}
+├ *Hipotenusa* = ${Math.max(a, b)}
+├ *Cálculo*: 
+├ *Obtener cateto*
+└────────────┘
+┌────────────┐
+├ Fórmula:
+├ C^2 = a^2 + b^2
+├ C^2 - b^2 = a^2
+├ ${Math.max(a, b)}^2 - ${Math.min(a, b)}^2 = a^2
+├ a = ${cateto}
+└────────────┘
+┌────────────┐
+${msg.body}
+└────────────┘
+┌────────────┐
+- *Euler-Bot©*
+└────────────┘
+`;
+            enviarMedia('./media/imagenCalcularCateto.png', mensaje)
         }
     }
     else if (figura === 'Fisica'){
