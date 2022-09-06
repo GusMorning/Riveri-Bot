@@ -358,6 +358,10 @@ function sumaDeLados(a, b, c) {
     let sumas =  (aP + bP) + cP;
     return sumas
 }
+function semiPerimetro(a, b, c) {
+    s = (a + b + c) / 2
+    return s
+}
 function leyHeron(a, b, c) {
     s = (a + b + c) / 2;
     area1 = Math.sqrt(s * (s - a) * (s - b) * (s - c));
@@ -440,5 +444,6 @@ module.exports = {
     leyHeron,
     calcularAlturaTriangulo,
     calcularHipotenusa,
-    calcularCateto
+    calcularCateto,
+    semiPerimetro
 }
