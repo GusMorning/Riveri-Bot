@@ -93,7 +93,11 @@ const {
     calcularAlturaTriangulo,
     calcularHipotenusa,
     calcularCateto,
-    semiPerimetro, //---
+    semiPerimetro,
+    calcularVelocidad,
+    calcularVelocidadKM,
+    botonP3Comandos,
+    botonP3ComoUsar, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
 /* 
@@ -272,61 +276,13 @@ else if (msg.body.startsWith('Problematica 3️⃣')) {
     client.sendMessage(msg.from, botonProblema3)
     enviarMedia(botones.ubicacionProblema3)
 }
-else if (msg.body.startsWith('/AreaPerimetroCirculo ')) {
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-* │ Fórmula de Perimetro y área del círculo                                 │
-  │ Area = π r^2
-  │ Perimetro = 2 * π * r
-  │ /AreaPerimetroCirculo [radio]
-  └─────────────────────────────────────────────────────────────────────────┘
- */
-//  ┌──────────────────────────────────────────────────────────────────────────────┐
-    var radio = msg.body.split(' ')[1];
-    var radio2 = msg.body.split(' ')[1];
-//  └──────────────────────────────────────────────────────────────────────────────┘
-//  ┌──────────────────────────────────────────────────────────────────────────────┐
-    let areaConPi = calcularAreaCirculo(radio);
-    let perimetroConPi = calcularPerimetro(radio2);
-    let area = calcularAreaCirculoSinPi(radio);
-    let perimetro = calcularPerimetroSinPi(radio2);
-    let radioCuadrado1 = radioCuadrado(radio)
-    let titulo = '┌────────────┐\nCalculadora \nArea \nPerimetro\n└────────────┘'
-    let mensaje = '┌────────────┐\n├ *D A T O S ----------*\n└────────────┘\n┌────────────┐\n├ Radio: ' + radio + '\n└────────────┘\n┌────────────┐\n├ *Á R E A ------------*\n└────────────┘\n┌────────────┐\n├ A = r^2 * π\n├ A = ' + radio + '^2 * π\n├ A = ' + radioCuadrado1 + ' π\n├ A ≈ ' + areaConPi + '\n└────────────┘\n┌────────────┐\n├ *P E R I M E T R O --*\n└────────────┘\n┌────────────┐\n├ P = r * 2 * π\n├ P = ' + radio + ' * 2 * π\n├ P = ' + perimetro + '\n├ P ≈ ' + perimetroConPi + '\n└────────────┘\n';
-    let boton = new Buttons(
-        mensaje,
-        [{body: 'Volver'}],
-        titulo,
-        'Proceso satisfactorio  [✅]'
-    );
-    client.sendMessage(msg.from, boton)
+else if (msg.body.startsWith('Lista de comandos 👨‍💻')) {
+    client.sendMessage(msg.from, botonP3Comandos);
 }
-else if (msg.body.startsWith('/AreaTriangulo ')) {
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-* │ Fórmula de área de un triangulo                                         │
-  │ Area = S=(b*h)/2
-  │ /AreaTriangulo [base] [altura]
-  └─────────────────────────────────────────────────────────────────────────┘
- */
-//  ┌──────────────────────────────────────────────────────────────────────────────┐
-    let base = msg.body.split(' ')[1];
-    let altura = msg.body.split(' ')[2];
-//  └──────────────────────────────────────────────────────────────────────────────┘
-//  ┌──────────────────────────────────────────────────────────────────────────────┐
-    let area = areaTriangulo(base, altura);
-    let basePorAltura = baseAltura(base, altura);
-//  └──────────────────────────────────────────────────────────────────────────────┘
-//  ┌──────────────────────────────────────────────────────────────────────────────┐
-    let titulo = '┌────────────┐\nCalculadora \nArea \nTriangulo\n└────────────┘'
-    let mensaje = '┌────────────┐\n├ *D A T O S ----------*\n└────────────┘\n┌────────────┐\n├ Base: ' + base + '\n├ Altura: ' + altura + '\n└────────────┘\n┌────────────┐\n├ *Á R E A ------------*\n└────────────┘\n┌────────────┐\n├ A = (b * h) / 2\n├ A = (' + base + ' * ' + altura + ') / 2\n├ A = (' + basePorAltura + ') / 2\n├ A = ' + area + 'cm2' +'\n└────────────┘'
-    let boton = new Buttons(
-        mensaje,
-        [{body: 'Volver'}],
-        titulo,
-        'Proceso satisfactorio  [✅]')
-    client.sendMessage(msg.from, boton)
+else if (msg.body.startsWith('¿Cómo usar? 🧮')){
+    client.sendMessage(msg.from, botonP3ComoUsar)
 }
+/* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/PerimetroTriangulo ')) {
     let clasificacion = msg.body.split(' ')[1];
     let a = msg.body.split(' ')[2];
@@ -343,7 +299,7 @@ else if (msg.body.startsWith('/PerimetroTriangulo ')) {
         client.sendMessage(msg.from, `Hola, la area es: ${area1}`)
     }
 }
-else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo')){
+else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
     let figura = msg.body.split(' ')[1];
     let clasificacion = msg.body.split(' ')[2];
     let a = msg.body.split(' ')[3];
@@ -354,6 +310,10 @@ else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || m
     a = parseFloat(a);
     b = parseFloat(b);
     c = parseFloat(c);
+    let a1 = msg.body.split(' ')[3]; a1 = parseFloat(a1);
+    let b1 = msg.body.split(' ')[4];
+    let c1 = msg.body.split(' ')[5]; c1 = parseFloat(c1);
+    let d1 = msg.body.split(' ')[6];
     const chat = await msg.getChat();
     if (figura === 'Triangulo' || figura === 'triangulo' || figura === 'triángulo') {
         if (clasificacion === 'Heron' || clasificacion === 'heron') {
@@ -361,6 +321,7 @@ else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || m
             let suma = Number(a) + Number(b) + Number(c);
             let semiP = semiPerimetro(a, b, c);
             let p = semiP;
+            let area = leyHeron(a, b, c);
             let mensaje = `┌────────────┐\n├ *D A T O S ----------*\n└────────────┘\n┌────────────┐\n├ Lado a = ${a} cm\n├ Lado b = ${b} cm\n├ Lado c = ${c} cm\n├ Cálculo: Área de un triangulo \nsabiendo sus tres lados.\n└────────────┘\n┌────────────┐\n├ Formula:\n├ p = Semi perimetro\n├ p = ( a + b + c ) / 2\n├ p = ( ${a} + ${b} + ${c} ) / 2\n├ p = (${suma}) / 2\n├ p = ${semiP}\n└────────────┘\n├ S = √p (p - a) (p - b) (p - c)\n├ S = √${p} (${p} - ${a}) (${p} - ${b}) (${p} - ${c})\n├ S = ${area}\n├ Área = ${area} cm2\n└────────────┘`;
             enviarMedia('./media/imagenCalcularAreaHeron.png', mensaje)
         };
@@ -435,6 +396,10 @@ ${msg.body}
             let mensaje = `┌────────────┐
 ├ *D A T O S ----------*
 └────────────┘
+┌─┬─┬────┐
+ │┼│ │┼┼┼┼ │
+ │┼│ │┼┼┼┼ │
+└─┴─┴────┘
 ┌────────────┐
 ├ *Cateto* = ${Math.min(a, b)}
 ├ *Hipotenusa* = ${Math.max(a, b)}
@@ -460,7 +425,32 @@ ${msg.body}
     }
     else if (figura === 'Fisica'){
         if (clasificacion === 'Velocidad') {
-            
+            let velocidad = calcularVelocidad(a1, c1);
+            let velocidadKM = calcularVelocidadKM(a1, c1)
+            let mensaje = 
+`┌────────────┐
+├ *D A T O S ----------*
+└────────────┘
+┌────────────┐
+├ *Distancia* = ${a1} ${b1}
+├ *Tiempo* = ${c1} ${d1}
+├ *Cálculo*: 
+├ *Velocidad física*
+└────────────┘
+┌────────────┐
+├ Fórmula:
+├ Velocidad = distancia / tiempo
+├ V = ${a1} / ${c1} 
+├ V = ${velocidad} ${b1} / ${d1}
+├ V = ${velocidadKM} km/h
+└────────────┘
+┌────────────┐
+${msg.body}
+└────────────┘
+┌────────────┐
+- *Euler-Bot©*
+└────────────┘`;
+            enviarMedia('./media/imagenCalcularVelocidad.png', mensaje)
         }
     }
 }

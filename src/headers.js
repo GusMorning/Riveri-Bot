@@ -107,7 +107,55 @@ var bodyTextoP2Comandos = '├ *Calculadora de IMC*\n├ /imc [Nombre] [Edad] [A
 /* ------------------------------- Problema 3 ------------------------------- */
 var tituloTextoProblema3 = '┌————————————\nP R O B L E M A T I C A 3️⃣\n└————————————';
 var bodyTextoProblema3 = '┌————————————\n- ¿Cuánto tiempo demora hacer cálculos complejos para el humano? La realidad es que va aumentando en calidad de qué tantas operaciones tenga que hacer, estando expuesto a errores en el proceso por la naturaleza del fallo en las personas. Usando de ejemplo, el cálculo del área, perímetro, hipotenusa que los estudiantes realizamos con bastante regularidad.\n└————————————\nAnte ello, ¿Cuál es la solución? Euler-Bot ✅\n┌————————————\n❌¿Necesitas hacer muchos ejercicios y los haces manual?\n✅ Euler-Bot te ayudará con el cálculo automatizado de muchas fórmulas en cuestión de segundos.\n└————————————\n┌————————————\n❌¿ Enseña cuáles son los procedimientos o fórmula?\n✅ En los pasos podrás encontrar la operación que se realizó y el resultado.\n└————————————';
-
+/* --------------------- Lista de comandos P3 Euler-Bot --------------------- */
+var tituloTextoP3Comandos = `┌————————————
+C O M A N D O S 👩‍💻
+└————————————`;
+var bodyTextoP3Comandos = `├ *Calculadora de Área usando la Ley de Heron*
+├ Sirve para calcular el área de un triángulo sabiendo sus tres lados
+├ /Calcular Triangulo Heron [lado1] [lado2] [lado3]
+└————————————
+├ *Calculadora de Altura*
+├ Sirve para hallar la altura de un triángulo conociendo sus tres lados
+├ /Calcular Triangulo Altura [lado1] [lado2] [lado3]
+└————————————
+├ *Calculadora de Área sabiendo base y altura*
+├ Permite hallar el área de un triángulo conociendo su base y altura
+├ /Calcular Triangulo Área [Base] [Altura]
+└————————————
+├ *Calculadora de Hipotenusa*
+├ Calcula el valor de la hipotenusa de un triángulo con los dos catetos restantes
+├ /Calcular Triangulo Hipotenusa [Cateto1] [Cateto2]
+└————————————
+├ *Calculadora de velocidad de un objeto*
+├ Permite conocer la velocidad de un objeto mediante la distancia y el tiempo. 
+├ /Calcular Fisica Velocidad [Distancia] [km, m, cm] [Tiempo] [hora, minuto, segundo] 
+└————————————`;
+/* ------------------------- Como usar P3 Euler-Bot ------------------------- */
+var tituloP3ComoUsar = `┌————————————
+Ejemplo de Uso 🤖
+└————————————`;
+var bodyTextoP3ComoUsar = `┌————————————
+*Caso 1 ✅*
+Un alumno desea calcular el área y perímetro de un triángulo sabiendo sus tres lados: Siendo estos a=4 cm, b=5 cm y c=3 cm
+└————————————
+┌————————————
+Para este ejemplo se aplica la fórmula de Heron. Presiona el botón */Calcular Triangulo Heron 4 5 3*
+└————————————
+┌————————————
+*Caso 2 ✅*
+Un joven desea conocer la velocidad de un bus que recorrió 450 metros en 20 minutos.
+└————————————
+┌————————————
+Aplicará el bot la fórmula de V = d/t. Presionar el botón */Calcular Fisica Velocidad 450 m 20 min*
+└————————————
+┌————————————
+*Caso 3✅*
+Un estudiante para sus ejercicios diarios de geometría quiere calcular la hipotenusa de un triángulo, siendo a = 3 & b = 4
+└————————————
+┌————————————
+Para ello, se utiliza el Teorema de Pitágoras. Presionar el botón */Calcular Triangulo Hipotenusa 3 4*
+└————————————`; 
 const aleatorio = chistes[Math.floor(Math.random() * chistes.length)];
 /* -------------------------------- !SECTION -------------------------------- */
 class menu {
@@ -166,7 +214,8 @@ var botones = {
     ubicacionSaludo: './media/imagenBotonSaludo.png',
     ubicacionProblema1: './media/imagenBotonProblematica1.png',
     ubicacionProblema2: './media/imagenBotonProblematica2.png',
-    ubicacionProblema3: './media/imagenBotonProblematica3.png'
+    ubicacionProblema3: './media/imagenBotonProblematica3.png',
+    ubicacionProblema3Comandos: './media/1.png'
 
 }
 // ────────────────────────────────────────────────────────────────────────────────
@@ -230,6 +279,20 @@ let botonProblema3 = new Buttons(
     [{body: 'Lista de comandos 👨‍💻'},
     {body: '¿Cómo usar? 🧮'}],
     tituloTextoProblema3,
+    footerTextoIntroduccion
+)
+/* ----------------- Lista de comandos Problema 3 Euler Bot ----------------- */
+let botonP3Comandos = new Buttons(
+    bodyTextoP3Comandos,
+    [{body: '¿Cómo puedo usar el Bot? 🥳'}],
+    tituloTextoP3Comandos,
+    footerTextoIntroduccion
+)
+/* -------------------------- Cómo usar Problema 3 -------------------------- */
+let botonP3ComoUsar = new Buttons(
+    bodyTextoP3ComoUsar,
+    [{body: '/Calcular Triangulo Heron 4 5 3'}, {body: '/Calcular Fisica Velocidad 450 m 20 min'}, {body: '/Calcular Triangulo Hipotenusa 3 4'}],
+    tituloP3ComoUsar,
     footerTextoIntroduccion
 )
 //
@@ -385,7 +448,15 @@ function calcularCateto(a, b) {
     catetoX = Math.sqrt( (numeroMayor **= 2) - (numeroMenor **= 2));
     return catetoX
 }
-
+function calcularVelocidad(a, b) {
+    v = a / b;
+    return v
+}
+function calcularVelocidadKM(a, b) {
+    y = a / 1000
+    x = b / 60
+    return y/x
+}
 
 
 
@@ -421,6 +492,8 @@ module.exports = {
     botonP2ComoUsar,
     botonP2Comandos,
     botonProblema3,
+    botonP3ComoUsar,
+    botonP3Comandos,
 /* -------------------------------- Especial -------------------------------- */
     instagram,
     facebook,
@@ -445,5 +518,8 @@ module.exports = {
     calcularAlturaTriangulo,
     calcularHipotenusa,
     calcularCateto,
-    semiPerimetro
+    semiPerimetro,
+    calcularVelocidadKM,
+    calcularVelocidad,
+    
 }
