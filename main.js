@@ -99,7 +99,8 @@ const {
     botonP3Comandos,
     botonP3ComoUsar,
     textos,
-    listaBots, //---
+    listaBots,
+    botonEulerBot, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
 /* 
@@ -184,7 +185,6 @@ const { ClientRequest } = require("http");
 //  │ Generación del Código QR :::::::::::::::::::::::::::::::::::::::::::::::::::::::::│
 //  └───────────────────────────────────────────────────────────────────────────────────┘
     client.on("qr", (qr) => {
-    console.log("[+]Test: QR Listo!");
     qrcode.generate(qr, {
     small: true
     })});
@@ -256,6 +256,7 @@ if (msg.body.startsWith('pruebaMensaje')) {
 } 
 else if (msg.body.startsWith('saludoNuevo')) {
     enviarMedia(botones.ubicacionSaludo);
+    enviarMedia('./media/imagenPreguntasFrecuentes.png')
     client.sendMessage(msg.from, saludoNuevoBoton);
 }
 else if (msg.body.startsWith('✅ Introducción')) {
@@ -289,6 +290,10 @@ else if (msg.body.startsWith('👩‍💻 Lista de Bots')){
     client.sendMessage(msg.from, listaBots)
     enviarMedia(botones.ubicacionListaDeBots, textos.textoListaBots)
 }
+else if (['Euler-Bot'].includes(message.body)) {
+        enviarMedia(botones.ubicacionEulerBot);
+        client.sendMessage(msg.from, botonEulerBot)
+}
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
     let figura = msg.body.split(' ')[1];
@@ -313,6 +318,7 @@ else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || m
             let semiP = semiPerimetro(a, b, c);
             let p = semiP;
             let area = leyHeron(a, b, c);
+            area = Math.round(area, 2)
             let mensaje = `┌────────────┐\n├ *D A T O S ----------*\n└────────────┘\n┌────────────┐\n├ Lado a = ${a} cm\n├ Lado b = ${b} cm\n├ Lado c = ${c} cm\n├ Cálculo: Área de un triangulo \nsabiendo sus tres lados.\n└────────────┘\n┌────────────┐\n├ Formula:\n├ p = Semi perimetro\n├ p = ( a + b + c ) / 2\n├ p = ( ${a} + ${b} + ${c} ) / 2\n├ p = (${suma}) / 2\n├ p = ${semiP}\n└────────────┘\n├ S = √p (p - a) (p - b) (p - c)\n├ S = √${p} (${p} - ${a}) (${p} - ${b}) (${p} - ${c})\n├ S = ${area}\n├ Área = ${area} cm2\n└────────────┘`;
             enviarMedia('./media/imagenCalcularAreaHeron.png', mensaje)
         };
@@ -325,7 +331,7 @@ else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || m
             let mensaje = '┌────────────┐\n├ *D A T O S ----------*\n└────────────┘\n┌────────────┐\n├ Lado a = ' + a + ' cm\n├ Lado b = ' + b + ' cm\n├ Lado c = ' + c + ' cm\n├ Cálculo: Altura de un tríangulo\n├ sabiendo sus 3 lados\n└────────────┘\n┌────────────┐\n├ Formula:\n├ p = Semi perimetro\n├ p = ( a + b + c ) / 2\n├ p = ( ' + a + ' + ' + b + ' + ' + c + ' ) / 2\n├ p = (' + suma + ') / 2\n├ p = ' + semiP + '\n└────────────┘\n├ S = √p (p - a) (p - b) (p - c)\n├ S = √' + p + ' (' + p + ' - ' + a + ') (' + p + ' - ' + b + ') (' + p + ' - ' + c + ')\n├ S = ' + area + '\n├ Área = ' + area + ' cm2\n└────────────┘\n├ Area = base * altura / 2\n├ Altura = 2 * Área / base\n├ Altura = 2 * ' + area + ' / ' + (numeroMayor = Math.max(a, b, c)) + '\n├ Altura = ' + altura + ' cm\n└────────────┘\n┌────────────┐\n' + msg.body + '\n└────────────┘\n┌────────────┐\n- Euler-Bot©\n└────────────┘\n';
             enviarMedia('./media/imagenCalculadoraAlturaTriangulo.png', mensaje)
         };
-        if (clasificacion === 'Area' || clasificacion === 'area' || clasificacion === 'área' || clasificacion === 'Área') {
+        if (['Area', 'area', 'área', 'Área'].includes(clasificacion)) {
         /* --------------- /Calculo Triangulo Area [a=base] [b=altura] -------------- */
             chat.sendStateTyping();
             let area = areaTriangulo(a, b);
