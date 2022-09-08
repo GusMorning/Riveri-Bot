@@ -97,7 +97,9 @@ const {
     calcularVelocidad,
     calcularVelocidadKM,
     botonP3Comandos,
-    botonP3ComoUsar, //---
+    botonP3ComoUsar,
+    textos,
+    listaBots, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
 /* 
@@ -125,6 +127,7 @@ const {
     /* [3] */ const { Puppeteer } = require("puppeteer");
     /* [4] */ const ProgressBar = require('progress');
 const { measureMemory } = require("vm");
+const { ClientRequest } = require("http");
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 //* │                          Definiciones para funciones                         │
@@ -282,23 +285,11 @@ else if (msg.body.startsWith('Lista de comandos 👨‍💻')) {
 else if (msg.body.startsWith('¿Cómo usar? 🧮')){
     client.sendMessage(msg.from, botonP3ComoUsar)
 }
-/* --------------------------- Euler-Bot Comandos --------------------------- */
-else if (msg.body.startsWith('/PerimetroTriangulo ')) {
-    let clasificacion = msg.body.split(' ')[1];
-    let a = msg.body.split(' ')[2];
-    let b = msg.body.split(' ')[3];
-    let c = msg.body.split(' ')[4];
-    a = parseFloat(a);
-    b = parseFloat(b);
-    c = parseFloat(c);
-    if (clasificacion === 'Todos') {
-        let suma = Number(a) + Number(b) + Number(c)
-        client.sendMessage(msg.from, `Hola, la suma es: ${suma}`)
-    } else if (clasificacion === 'Heron') {
-        let area1 = leyHeron(a, b, c)
-        client.sendMessage(msg.from, `Hola, la area es: ${area1}`)
-    }
+else if (msg.body.startsWith('👩‍💻 Lista de Bots')){
+    client.sendMessage(msg.from, listaBots)
+    enviarMedia(botones.ubicacionListaDeBots, textos.textoListaBots)
 }
+/* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
     let figura = msg.body.split(' ')[1];
     let clasificacion = msg.body.split(' ')[2];
