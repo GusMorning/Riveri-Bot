@@ -156,6 +156,13 @@ Un estudiante para sus ejercicios diarios de geometría quiere calcular la hipot
 ┌————————————
 Para ello, se utiliza el Teorema de Pitágoras. Presionar el botón */Calcular Triangulo Hipotenusa 3 4*
 └————————————`; 
+/* -------------------------------- Euler-Bot ------------------------------- */
+var tituloTextoEulerBot = `┌————————————
+Euler-Bot 🧮
+└————————————`;
+var bodyTextoEulerBot = `┌————————————
+✅ Hola, soy Euler-Bot! Estoy inspirado en el matemático suizo Leonhard Euler. Puedo ayudarte a realizar cálculos de fórmulas matemáticas de forma eficaz y rápida. ¿Cuáles son? Presiona los botones! 
+└————————————`
 const aleatorio = chistes[Math.floor(Math.random() * chistes.length)];
 /* -------------------------------- !SECTION -------------------------------- */
 class menu {
@@ -206,17 +213,18 @@ var calcularIMC = {
 var planEvolutivo = {
     ubicacion: ubicacionPlanEvolutivo
 }
-var chistesFuncion = {
+const chistesFuncion = {
     chiste: chistes,
     funcion: aleatorio
-}
+};
 var botones = {
     ubicacionSaludo: './media/imagenBotonSaludo.png',
     ubicacionProblema1: './media/imagenBotonProblematica1.png',
     ubicacionProblema2: './media/imagenBotonProblematica2.png',
     ubicacionProblema3: './media/imagenBotonProblematica3.png',
     ubicacionProblema3Comandos: './media/1.png',
-    ubicacionListaDeBots: './media/imagenListaDeBots.png'
+    ubicacionListaDeBots: './media/imagenListaDeBots.png',
+    ubicacionEulerBot: './media/imagenEulerBot.png'
 
 }
 var textos = {
@@ -311,6 +319,14 @@ let botonP3ComoUsar = new Buttons(
     bodyTextoP3ComoUsar,
     [{body: '/Calcular Triangulo Heron 4 5 3'}, {body: '/Calcular Fisica Velocidad 450 m 20 min'}, {body: '/Calcular Triangulo Hipotenusa 3 4'}],
     tituloP3ComoUsar,
+    footerTextoIntroduccion
+)
+/* -------------------------------- Euler-Bot ------------------------------- */
+let botonEulerBot = new Buttons(
+    bodyTextoEulerBot,
+    [{body: 'Lista de comandos 👨‍💻'},
+    {body: '¿Cómo usar? 🧮'}],
+    tituloTextoEulerBot,
     footerTextoIntroduccion
 )
 //
@@ -549,6 +565,7 @@ module.exports = {
     botonProblema3,
     botonP3ComoUsar,
     botonP3Comandos,
+    botonEulerBot,
 /* -------------------------------- Especial -------------------------------- */
     instagram,
     facebook,
