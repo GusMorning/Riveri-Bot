@@ -155,7 +155,8 @@ const { ClientRequest } = require("http");
     fechaHora.toLocaleDateString());
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
-    /* [0] */ const client = new Client({authStrategy: new LocalAuth(), puppeteer: {headless: false}});
+    /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	puppeteer: {
+		args: ['--no-sandbox'],}});
     const component = new Buttons('test', [{body: 'Test', id: 'test-1'}], 'title', 'footer') // Reply button
 //  └──────────────────────────────────────────────────────────────────────────────┘
 
@@ -249,6 +250,13 @@ client.on("message", async (message) => {
                 });
             }, DELAY_TIME);
         };
+        function enviarMensaje(mensaje){
+            client.sendMessage(msg.from, mensaje)
+        }
+        async function enviarAudio(ubicacionDelArchivo){
+            let audio = MessageMedia.fromFilePath(ubicacionDelArchivo);
+            await client.sendMessage(msg.from, audio, {sendAudioAsVoice: true});
+        }
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
 if (msg.body.startsWith('pruebaMensaje')) {
@@ -256,11 +264,12 @@ if (msg.body.startsWith('pruebaMensaje')) {
 } 
 else if (msg.body.startsWith('saludoNuevo')) {
     enviarMedia(botones.ubicacionSaludo);
-    enviarMedia('./media/imagenPreguntasFrecuentes.png')
+    enviarAudio(`./media/saludo1.mp3`)
     client.sendMessage(msg.from, saludoNuevoBoton);
 }
 else if (msg.body.startsWith('✅ Introducción')) {
     client.sendMessage(msg.from, botonIntroduccion);
+    enviarAudio(`./media/introduccion1.mp3`)
 }
 else if (msg.body.startsWith('Problemática 1️⃣')) {
     client.sendMessage(msg.from, botonProblema1);
@@ -292,7 +301,16 @@ else if (msg.body.startsWith('👩‍💻 Lista de Bots')){
 }
 else if (['Euler-Bot'].includes(message.body)) {
         enviarMedia(botones.ubicacionEulerBot);
-        client.sendMessage(msg.from, botonEulerBot)
+        enviarMensaje(botonEulerBot)
+}
+else if (['/RCP', '/rcp', 'rcp', 'RCP', 'Rcp'].includes(message.body)){
+    enviarMedia(botones.ubicacionRCP, textos.textoRCP)
+}
+else if (['/tips', '/tip', 'tips', 'tip', 'Tips', '/Tips'].includes(message.body)){
+    enviarMedia(botones.ubicacionTips, textos.textoTips)
+}
+else if (['Directorio de teléfonos', '/teléfonos', '/Teléfonos', 'Teléfonos', 'teléfonos'].includes(message.body)){
+    
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
@@ -311,7 +329,7 @@ else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || m
     let c1 = msg.body.split(' ')[5]; c1 = parseFloat(c1);
     let d1 = msg.body.split(' ')[6];
     const chat = await msg.getChat();
-    if (figura === 'Triangulo' || figura === 'triangulo' || figura === 'triángulo') {
+    if (['Triangulo', 'triangulo', 'triángulo'].includes(figura)) {
         if (clasificacion === 'Heron' || clasificacion === 'heron') {
             chat.sendStateTyping();
             let suma = Number(a) + Number(b) + Number(c);
