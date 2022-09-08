@@ -155,7 +155,8 @@ const { ClientRequest } = require("http");
     fechaHora.toLocaleDateString());
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
-    /* [0] */ const client = new Client({authStrategy: new LocalAuth(), puppeteer: {headless: false}});
+    /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	puppeteer: {
+		args: ['--no-sandbox'],}});
     const component = new Buttons('test', [{body: 'Test', id: 'test-1'}], 'title', 'footer') // Reply button
 //  └──────────────────────────────────────────────────────────────────────────────┘
 
