@@ -215,8 +215,26 @@ var botones = {
     ubicacionProblema1: './media/imagenBotonProblematica1.png',
     ubicacionProblema2: './media/imagenBotonProblematica2.png',
     ubicacionProblema3: './media/imagenBotonProblematica3.png',
-    ubicacionProblema3Comandos: './media/1.png'
+    ubicacionProblema3Comandos: './media/1.png',
+    ubicacionListaDeBots: './media/imagenListaDeBots.png'
 
+}
+var textos = {
+    textoListaBots: `┌————————————
+💻 LISTA DE BOTS 
+└————————————
+┌————————————
+✅ Euler-Bot => Ideado para cálculos matemáticos, operaciones de física y conversión de unidades.
+└————————————
+┌————————————
+✅ Riveri-Bot => Espacio dedicado a nuestro colegio I.E "Nicanor Rivera Cáceres" 7050 que transmite toda la información relevante.
+└————————————
+┌————————————
+✅ Ciudadanía-Bot => Conoce más acerca de tus derechos, prueba las trivias, y divertete!
+└————————————
+┌————————————
+✅ Marie Curie-Bot => Centrado para la divulgación de la ciencia, encontrarás experimentos divertidos y datos interesantes cientificos. 
+└————————————`
 }
 // ────────────────────────────────────────────────────────────────────────────────
 const botMenu = new Buttons(
@@ -284,7 +302,7 @@ let botonProblema3 = new Buttons(
 /* ----------------- Lista de comandos Problema 3 Euler Bot ----------------- */
 let botonP3Comandos = new Buttons(
     bodyTextoP3Comandos,
-    [{body: '¿Cómo puedo usar el Bot? 🥳'}],
+    [{body: '¿Cómo usar? 🧮'}],
     tituloTextoP3Comandos,
     footerTextoIntroduccion
 )
@@ -384,6 +402,42 @@ var listaFunciones = new List(
     tittleFuncionesMenu, // tittle
     "Muni-Bot" // copyright ==?
 );
+/* -------------------------------------------------------------------------- */
+/*                                Lista de Bots                               */
+/* -------------------------------------------------------------------------- */
+var seccionesFunciones1 = [{
+    title: tituloDentroFuncionesMenu, //titulo adentro de la lista
+    rows: [{
+            title: "Euler-Bot",
+            //description: "¿Tienes dudas o preguntas? Permiteme ayudarte. ;)",
+        }, // Lista 1
+        {
+            title: "Medi-Bot",
+            //description: "Las sugerencias son vitales para poder mejorar siempre.",
+        }, // Lista 2
+        {
+            title: "Ciudadanía-Bot",
+            //description: "Nuestra identidad, nos presentamos!",
+        }, // Lista 3
+        {
+            title: "Riveri-Bot",
+            //description: "¿Deseas estar al día de las publicaciones del colegio? Aquí podrás saberlo",
+        }, // Lista 4
+        {
+            title: "Marie Curie-Bot",
+            //description: "¿Quieres informarte? ¡Genial!",
+        }, // Lista 5
+    ],
+}, ];
+var listaBots = new List(
+    '', // body
+    botonFuncionesMenu, // Boton a presionar
+    seccionesFunciones1,
+    'Lista de Bots', // tittle
+    "NRC-Bot" // copyright ==?
+);
+
+
 /* ----------------------------- !SECTION Lista ----------------------------- */
 /* -------------------------------- Funciones ------------------------------- */
 function calcularPerimetro(radio) {
@@ -469,6 +523,7 @@ module.exports = {
     listaSaludo2,
     listaOpciones,
     listaFunciones,
+    listaBots,
 /* ---------------------------------- Texto --------------------------------- */
     preguntasTexto,
     sugerenciasTexto,
@@ -477,7 +532,7 @@ module.exports = {
     facebookTexto,
     paginaWebTexto,
     chistes,
-
+    textos,
 /* ------------------------------- Ubicaciones ------------------------------ */
     ubicacionQuienesSomos,
     ubicacionInstagram,
