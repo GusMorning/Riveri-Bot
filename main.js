@@ -561,9 +561,9 @@ switch(msg.body){
     case 'Muni-Bot':
         client.sendMessage(message.from, `Hola: ${message.author}, ${message.id}, ${message.orderId}, ${message.rawData}, ${message.to}, ${message.timestamp}, ${message.token}`);
         break;
-    case 'ola':
-        client.sendMessage(message.from, botMenu);
-        break;
+    //case 'ola':
+      //  client.sendMessage(message.from, botMenu);
+        //break;
     case 'msg':
         client.sendMessage(message.from, msg)
         console.log(msg)
@@ -648,9 +648,9 @@ switch(msg.body){
         break;
 }
 
-if (ignoreCase.includes(msg.body, 'Hola')) {
-    client.sendMessage(msg.from, listaSaludo2);
-}
+//if (ignoreCase.includes(msg.body, 'Hola')) {
+    //client.sendMessage(msg.from, listaSaludo2);
+//}
 
 if (msg.body.startsWith('EnviarOpciones ')) {
     // Direct send a new message to specific id
