@@ -313,7 +313,7 @@ else if (['Directorio de teléfonos', '/teléfonos', '/Teléfonos', 'Teléfonos'
 }
 else if (['Medi-Bot', 'medi-bot'].includes(msg.body)) {
     enviarMedia(botones.ubicacionProblema2)
-    enviarMensaje(botonMediBot)
+    client.sendMessage(botonMediBot)
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
