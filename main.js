@@ -9,15 +9,13 @@
 */
 const {
 //  ┌───────────────────────────┐
-    Client, //──────────────────│
-    LegacySessionAuth, //───────│
+    Client, //───────│
     LocalAuth, //───────────────│
     MessageMedia, //────────────│
     List, //────────────────────│
     Buttons, //─────────────────│
     ChatTypes, //───────────────│
-    Status, //──────────────────│
-//  └───────────────────────────┘
+    Status,
 
 } = require("whatsapp-web.js");
 /* 
@@ -310,7 +308,10 @@ else if (['/tips', '/tip', 'tips', 'tip', 'Tips', '/Tips'].includes(message.body
     enviarMedia(botones.ubicacionTips, textos.textoTips)
 }
 else if (['Directorio de teléfonos', '/teléfonos', '/Teléfonos', 'Teléfonos', 'teléfonos'].includes(message.body)){
-    
+    enviarMedia('./media/imagenDirectorio.png',textos.textoDirectorio)
+}
+else if (['Medi-Bot', 'medi-bot'].includes(msg.body)) {
+    enviarMedia('./')
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){

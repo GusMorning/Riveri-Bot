@@ -216,7 +216,32 @@ Todo lo mencionado anteriormente involucra una serie de prácticas adecuadamente
 ┌————————————
 *🥳 Conclusiones*: Conservar la buena salud depende de cada uno, de sus pensamientos, sus decisiones y sus actitudes que asume diariamente.
 Seamos conscientes de que vivir saludablemente o enfermar no es una cuestión de privilegio, designio divino o castigo; es simplemente la suma de nuestras decisiones para actuar pertinentemente con nuestro cuerpo y nuestro entorno.
-└————————————`
+└————————————`;
+/* -------------------------- Directorio teléfonico ------------------------- */
+var textoDirectorio = `┌————————————
+*Directorio de teléfonos de emergencia*
+└————————————
+┌————————————
+Según la página oficial del gobierno del Perú los números importantes que todos los ciudadanos deberían recordar en caso de emergencias son:
+└————————————
+┌————————————
+├ *Número de la policía*: 105
+├ *Denuncia contra la violencia familiar y sexual*: 100
+├ *EsSalud*: 107
+├ *Policía de carreteras*: 110
+├ *Infosalud*: 113
+├ *Defensa Civil*: 115
+├ *Bomberos*: 116
+├ *Cruz roja*: 01 266 0481
+├ *Atención medica móvil*: 106
+└————————————`;
+/* -------------------------------- Medi-Bot -------------------------------- */
+var textoMediBot = `┌————————————
+✅ ¡Bienvenido, soy tu asistente de cálculos médicos *Medi-Bot! ¿En qué te puedo ayudar? Revisa mis opciones de comandos y fórmulas.
+└————————————`;
+var tituloMediBot = `┌————————————
+*Medi-Bot* 🍎👩‍⚕️
+└————————————`;
 /* -------------------------------- Euler-Bot ------------------------------- */
 var tituloTextoEulerBot = `┌————————————
 Euler-Bot 🧮
@@ -307,7 +332,8 @@ var textos = {
 ✅ Marie Curie-Bot => Centrado para la divulgación de la ciencia, encontrarás experimentos divertidos y datos interesantes cientificos. 
 └————————————`,
     textoRCP,
-    textoTips
+    textoTips,
+    textoDirectorio,
 }
 // ────────────────────────────────────────────────────────────────────────────────
 const botMenu = new Buttons(
@@ -392,6 +418,14 @@ let botonEulerBot = new Buttons(
     [{body: 'Lista de comandos 👨‍💻'},
     {body: '¿Cómo usar? 🧮'}],
     tituloTextoEulerBot,
+    footerTextoIntroduccion
+)
+/* -------------------------------- Medi-Bot -------------------------------- */
+let botonMediBot = new Buttons(
+    textoMediBot,
+    [{body: 'Lista de comandos 👩‍💻'},
+    {body: '¿Cómo puedo usar el Bot? 🥳'}],
+    tituloMediBot,
     footerTextoIntroduccion
 )
 //
