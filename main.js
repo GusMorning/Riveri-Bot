@@ -128,6 +128,7 @@ const {
     /* [4] */ const ProgressBar = require('progress');
 const { measureMemory } = require("vm");
 const { ClientRequest } = require("http");
+const { query } = require("express");
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 //* │                          Definiciones para funciones                         │
@@ -256,6 +257,9 @@ client.on("message", async (message) => {
             let audio = MessageMedia.fromFilePath(ubicacionDelArchivo);
             await client.sendMessage(msg.from, audio, {sendAudioAsVoice: true});
         }
+        function climaEmoji(data1){
+            if(data1 === 'Patchy rain possible') return 'Posible lluvia irregular 🌧️'
+        };
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
 if (msg.body.startsWith('pruebaMensaje')) {
@@ -316,8 +320,69 @@ else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
     client.sendMessage(message.from, botonMediBot)
 }
 else if (msg.body.startsWith('Temperatura ')){
-    a = msg.body.slice(6)
-    enviarMensaje(a)
+    let query = msg.body.slice(12)
+    const url = 'http://api.weatherstack.com/current?access_key=00b5423454f994931ec9a049dc7b1b06&query=' + query;
+    fetch(url)
+  .then(response => response.json())
+  .then((data) => {
+    let data1 = data.current.weather_descriptions;
+    const mensaje = `┌————————————
+C I U D A D *${data.location.name}* 🗺️
+└————————————
+├🍁*Nombre*: ${data.location.name}
+├📍 *País*: ${data.location.country}
+├🚅*Latitud*: ${data.location.lat}
+├🕰️*Zona horaria*: ${data.location.timezone_id}
+├⌚*Fecha y hora*: ${data.location.localtime}
+├🌧️*Clima*: ${data1}
+├🌡️ *Temperatura*: ${data.current.temperature}
+├💧 *Humedad*: ${data.current.humidity}
+└————————————`;
+enviarMensaje(mensaje);
+  }).catch(function(error) {
+    enviarAudio('./media/error.mp3')
+    enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
+    console.log('[-] Error: ' + 'Fallo en API temperatura'.red);
+  });
+}
+else if (msg.body.startsWith('Traducir ')) {
+    const texto  = msg.body.slice(9);
+    const encodedParams = new URLSearchParams();
+    encodedParams.append("q", texto);
+    encodedParams.append("target", "en");
+    encodedParams.append("source", "es");
+    const fetch = require('node-fetch')
+    const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'Accept-Encoding': 'application/gzip',
+		'X-RapidAPI-Key': 'c8a1811b51msh6bc660bff53c5fap1a5fc7jsn33c6cc586703',
+		'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+	},
+	body: encodedParams
+};
+fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
+	.then(response => response.json())
+	.then((data) => {
+        const mensaje = `┌————————————
+*T R A D U C T O R* 🗣️
+└————————————
+┌————————————
+├ *Texto original:* ${texto}
+└————————————
+┌————————————
+├ Traducción *Español -> Inglés*:
+├ Texto: ${data.data.translations[0].translatedText}
+└————————————`;
+        enviarMensaje(mensaje)
+	})
+	.catch(function(error) {
+        enviarAudio('./media/error.mp3')
+        enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
+        console.log('[-] Error: ' + 'Fallo en API temperatura'.red);
+      });
+
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
