@@ -311,9 +311,9 @@ else if (['/tips', '/tip', 'tips', 'tip', 'Tips', '/Tips'].includes(message.body
 else if (['Directorio de teléfonos', '/teléfonos', '/Teléfonos', 'Teléfonos', 'teléfonos'].includes(message.body)){
     enviarMedia('./media/imagenDirectorio.png',textos.textoDirectorio)
 }
-else if (['Medi-Bot', 'medi-bot'].includes(msg.body)) {
+else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
     enviarMedia(botones.ubicacionProblema2)
-    client.sendMessage(botonMediBot)
+    client.sendMessage(message.from, botonMediBot)
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
