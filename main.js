@@ -98,7 +98,8 @@ const {
     botonP3ComoUsar,
     textos,
     listaBots,
-    botonEulerBot, //---
+    botonEulerBot,
+    botonMediBot, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
 /* 
@@ -311,7 +312,8 @@ else if (['Directorio de teléfonos', '/teléfonos', '/Teléfonos', 'Teléfonos'
     enviarMedia('./media/imagenDirectorio.png',textos.textoDirectorio)
 }
 else if (['Medi-Bot', 'medi-bot'].includes(msg.body)) {
-    enviarMedia('./')
+    enviarMedia(botones.ubicacionProblema2)
+    enviarMensaje(botonMediBot)
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){

@@ -665,6 +665,7 @@ module.exports = {
     botonP3ComoUsar,
     botonP3Comandos,
     botonEulerBot,
+    botonMediBot,
 /* -------------------------------- Especial -------------------------------- */
     instagram,
     facebook,
