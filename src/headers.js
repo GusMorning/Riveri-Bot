@@ -237,10 +237,10 @@ Según la página oficial del gobierno del Perú los números importantes que to
 └————————————`;
 /* -------------------------------- Medi-Bot -------------------------------- */
 var textoMediBot = `┌————————————
-✅ ¡Bienvenido, soy tu asistente de cálculos médicos *Medi-Bot! ¿En qué te puedo ayudar? Revisa mis opciones de comandos y fórmulas.
+✅ ¡Bienvenido, soy tu asistente de cálculos médicos *Medi-Bot*! ¿En qué te puedo ayudar? Revisa mis opciones de comandos y fórmulas.
 └————————————`;
 var tituloMediBot = `┌————————————
-*Medi-Bot* 🍎👩‍⚕️
+Medi-Bot 🍎👩‍⚕️
 └————————————`;
 /* -------------------------------- Euler-Bot ------------------------------- */
 var tituloTextoEulerBot = `┌————————————

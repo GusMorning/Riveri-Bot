@@ -315,6 +315,10 @@ else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
     enviarMedia(botones.ubicacionProblema2)
     client.sendMessage(message.from, botonMediBot)
 }
+else if (msg.body.startsWith('Temperatura ')){
+    a = msg.body.slice(6)
+    enviarMensaje(a)
+}
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
     let figura = msg.body.split(' ')[1];
