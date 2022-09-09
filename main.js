@@ -7,6 +7,11 @@
 *   │::::::Whatsapp Web Puppeteer Library    : :  :   :    :     :     :     :│
     └─────────────────────────────────────────────────────────────────────────┘
 */
+const {Translate} = require('@google-cloud/translate').v2;
+
+// Instantiates a client
+const translate = new Translate({projectId: 'sigma-outlook-361916'});
+
 const {
 //  ┌───────────────────────────┐
     Client, //───────│
@@ -260,6 +265,27 @@ client.on("message", async (message) => {
         function climaEmoji(data1){
             if(data1 === 'Patchy rain possible') return 'Posible lluvia irregular 🌧️'
         };
+        async function quickStart(texto) {
+            // The text to translate
+            const text = texto;
+          
+            // The target language
+            const target = 'en';
+          
+            // Translates some text into Russian
+            const [translation] = await translate.translate(text, target);
+            const mensaje = `┌————————————
+*T R A D U C T O R* 🗣️
+└————————————
+┌————————————
+├ *Texto original:* ${texto}
+└————————————
+┌————————————
+├ Traducción *Español -> Inglés*:
+├ Texto: ${translation}
+└————————————`;
+            enviarMensaje(mensaje)
+          }
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
 if (msg.body.startsWith('pruebaMensaje')) {
@@ -347,41 +373,7 @@ enviarMensaje(mensaje);
 }
 else if (msg.body.startsWith('Traducir ')) {
     const texto  = msg.body.slice(9);
-    const encodedParams = new URLSearchParams();
-    encodedParams.append("q", texto);
-    encodedParams.append("target", "en");
-    encodedParams.append("source", "es");
-    const fetch = require('node-fetch')
-    const options = {
-	method: 'POST',
-	headers: {
-		'content-type': 'application/x-www-form-urlencoded',
-		'Accept-Encoding': 'application/gzip',
-		'X-RapidAPI-Key': 'c8a1811b51msh6bc660bff53c5fap1a5fc7jsn33c6cc586703',
-		'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
-	},
-	body: encodedParams
-};
-fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
-	.then(response => response.json())
-	.then((data) => {
-        const mensaje = `┌————————————
-*T R A D U C T O R* 🗣️
-└————————————
-┌————————————
-├ *Texto original:* ${texto}
-└————————————
-┌————————————
-├ Traducción *Español -> Inglés*:
-├ Texto: ${data.data.translations[0].translatedText}
-└————————————`;
-        enviarMensaje(mensaje)
-	})
-	.catch(function(error) {
-        enviarAudio('./media/error.mp3')
-        enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
-        console.log('[-] Error: ' + 'Fallo en API temperatura'.red);
-      });
+    quickStart(texto);
 
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
