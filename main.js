@@ -343,6 +343,7 @@ else if (['Directorio de teléfonos', '/teléfonos', '/Teléfonos', 'Teléfonos'
 }
 else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
     enviarMedia(botones.ubicacionProblema2)
+    enviarAudio('./media/medi-bot.mp3')
     client.sendMessage(message.from, botonMediBot)
 }
 else if (msg.body.startsWith('Temperatura ')){
@@ -374,7 +375,11 @@ enviarMensaje(mensaje);
 else if (msg.body.startsWith('Traducir ')) {
     const texto  = msg.body.slice(9);
     quickStart(texto);
-
+}
+else if (ignoreCase.includes(msg.body, 'Hola')) {
+    enviarMedia(botones.ubicacionSaludo);
+    enviarAudio(`./media/saludo1.mp3`)
+    client.sendMessage(msg.from, saludoNuevoBoton);
 }
 /* --------------------------- Euler-Bot Comandos --------------------------- */
 else if (msg.body.startsWith('/Calculo') || msg.body.startsWith('/calculo') || msg.body.startsWith('Calculo') || msg.body.startsWith('/Calcular') || msg.body.startsWith('Calcular') || msg.body.startsWith('/calcular')){
