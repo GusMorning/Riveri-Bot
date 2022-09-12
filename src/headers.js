@@ -287,26 +287,13 @@ var comandosTexto = `├ *Derechos ciudadanos*
 ├ Entender cómo son las emociones es fundamental.
 ├ /Emociones
 └————————————
-├ *Fotos de perritos*
-├ /perritos
-└————————————
-├ *Fotos de patitos*
-├ /patitos
-└————————————
-├ *Fotos de zorritos*
-├ /zorritos
-└————————————
 ├ *Clima de una zona*
 ├ Conoce el clíma actual de una zona de tu preferencia alrededor del mundo.
 ├ Temperatura [zona]
 └————————————
 ├ *Traductor de Español a Inglés*
 ├ Traduce un mensaje.
-├ /Calcular Fisica Velocidad [Distancia] [km, m, cm] [Tiempo] [hora, minuto, segundo] 
-└————————————
-├ *Fotos de patitos*
-├ DSDAS 
-├ /Calcular Fisica Velocidad [Distancia] [km, m, cm] [Tiempo] [hora, minuto, segundo] 
+├ Traducir [texto]
 └————————————`
 /* ---------------------- Habilidades socioemocionales ---------------------- */
 var tituloHabilidadesEmocionales = `┌————————————
