@@ -97,7 +97,7 @@ var footerTextoIntroduccion = 'Presiona los botones para conocer más';
 var bodyTextoProblema1 = '┌————————————\n- La escasa enseñanza de programación en los colegios: Es conocido que estamos en una era donde el uso y avance de las tecnologías es indispensable, sin embargo, ¿Estamos avanzando nosotros con ella? La respuesta es que no, porque aprendimos a utilizarlas pero no a crearlas y esto nos afecta a todos, ya que el mundo laboral necesita en demanda mayores conocimientos. Siendo así que los jóvenes al salir del colegio se encuentran una realidad muy diferente a la que se les enseña. \n└————————————\n¿La solución? Framework para la creación de Bots ✅\n┌————————————\nUna framework es una herramienta que ofrece una estructura base para elaborar un proyecto con objetivos específicos, en resumen, la herramienta que te permitirá realizar proyectos de forma más sencilla y con los recursos que necesites para ello. Nuestra Framework nos permite responder a estas preguntas: \n└————————————\n┌————————————\n❌ ¿No sabes programar?\n✅ La Framework te enseñará para que puedas aprender desde 0 con ejemplos prácticos de su uso.\n└————————————\n┌————————————\n❌ ¿Es complicado? \n✅ Los materiales serán didácticos y se complementan con videos tutoriales.\n└————————————\n❌ ¿Qué proyectos me ayudará a hacer?\n✅ Podrás crear tu propio Bot para WhatsApp lo que desees hacer.\n└————————————\n┌————————————\n❌ ¿Tengo que pagar? \n✅ Es totalmente gratuita, y está subida en https://github.com/GusMorning/Riveri-Bot\n└————————————';
 var tituloTextoProblema1 = '┌————————————\nP R O B L E M A T I C A 1️⃣\n└————————————';
 /* ------------------------------- Problema 2 ------------------------------- */
-var bodyTextoProblema2 = '┌————————————\n- El personal de salud, doctores o médicos cuando hacen su diagnóstico a los pacientes tienen en cuenta una problemática crucial: El tiempo que les demora realizar las fórmulas como lo es calcular el IMC, déficit de agua, hierro, etc. Que traducido a efectos prácticos, es tiempo no aprovechable. Produciendo así mayor tiempo de demora en la atención de pacientes, y retrasando su ardua labor.\n└————————————\n¿Cómo lo podemos solucionar? \nPresentamos a Medi-Bot ✅\n# Importante: \n*Solo para médicos*\n┌————————————\nPermite calcular el índice de masa corporal (IMC), el déficit del agua en el cuerpo (ACT), la función renal (CCr) (Cockcroft-Gault) y el déficit de hierro mediante la fórmula de Ganzoni, así como también las instrucciones para actuar en caso de una emergencia de salud, por ejemplo: Reanimación Cardio Pulmonar básica (RCP) o la actuación ante accidentes que comprometen la vida como las hemorragias o posibles fracturas, los números de teléfonos de emergencia y los consejos para tener un estilo de vida saludable.\n└————————————\n┌————————————\n❌¿Tarda mucho?\n✅ Hace los cálculos en menos de 2 segundos sin importar la complejidad.\n└————————————\n┌————————————\n❌¿Los cálculos son precisos?\n✅ Exactitud de cálculo al 100%\n└————————————\n┌————————————\n❌¿El Medi-Bot suplantará al doctor?\n✅ Será su asistente personal para ayudarlo, dentro del límite que será solo hacer las operaciones matemáticas que necesite realizar.\n└————————————';
+var bodyTextoProblema2 = '┌————————————\n- Los profesionales de salud cuando hacen su diagnóstico a los pacientes tienen en cuenta una problemática crucial: El tiempo que les demora realizar las fórmulas como lo es calcular el IMC, déficit de agua, hierro, etc. Que traducido a efectos prácticos, es tiempo no aprovechable. Produciendo así mayor tiempo de demora en la atención de pacientes, y retrasando su ardua labor.\n└————————————\n¿Cómo lo podemos solucionar? \nPresentamos a Medi-Bot ✅\n# Importante: \n*Solo para médicos*\n┌————————————\nPermite calcular el índice de masa corporal (IMC), el déficit del agua en el cuerpo (ACT), la función renal (CCr) (Cockcroft-Gault) y el déficit de hierro mediante la fórmula de Ganzoni, así como también las instrucciones para actuar en caso de una emergencia de salud, por ejemplo: Reanimación Cardio Pulmonar básica (RCP) o la actuación ante accidentes que comprometen la vida como las hemorragias o posibles fracturas, los números de teléfonos de emergencia y los consejos para tener un estilo de vida saludable.\n└————————————\n┌————————————\n❌¿Tarda mucho?\n✅ Hace los cálculos en menos de 2 segundos sin importar la complejidad.\n└————————————\n┌————————————\n❌¿Los cálculos son precisos?\n✅ Exactitud de cálculo al 100%\n└————————————\n┌————————————\n❌¿El Medi-Bot suplantará al doctor?\n✅ Será su asistente personal para ayudarlo, dentro del límite que será solo hacer las operaciones matemáticas que necesite realizar.\n└————————————';
 var tituloTextoProblema2 = '┌————————————\nP R O B L E M A T I C A 2️⃣\n└————————————';
 /* --------------------- ¿Cómo lo puedo utilizar al bot? -------------------- */
 var tituloTextoP2ComoUsar = '┌————————————\nEjemplo de Uso 🤖\n└————————————';
@@ -235,6 +235,14 @@ Según la página oficial del gobierno del Perú los números importantes que to
 ├ *Cruz roja*: 01 266 0481
 ├ *Atención medica móvil*: 106
 └————————————`;
+/* ------------------------------- Hemorragia ------------------------------- */
+var textoHemorragia = `┌————————————
+*¿Qué hacer en caso de una hemorragia?*
+└————————————
+┌————————————
+Para el tratamiento de las hemorragias se necesita tener algún pañuelo o ropa que pueda sustituirlo. Se debe presionar con el pañuelo la parte de la hemorragia, en caso de que el pañuelo se llene de sangre puede colocar otro pañuelo encima sin dejar de presionar el área afectada, en el caso de que sea ropa, puede doblarla para generar otra capa sin mover la parte que está pegada a la herida, puesto que esto podría destruir coágulos y abrir la herida nuevamente. Después de que la herida deje de sangrar podría colocar una venda con un poco de presión y llevarlo a urgencias.
+└————————————
+`
 /* -------------------------------- Medi-Bot -------------------------------- */
 var textoMediBot = `┌————————————
 ✅ ¡Bienvenido, soy tu asistente de cálculos médicos *Medi-Bot*! ¿En qué te puedo ayudar? Revisa mis opciones de comandos y fórmulas.
@@ -249,6 +257,77 @@ Euler-Bot 🧮
 var bodyTextoEulerBot = `┌————————————
 ✅ Hola, soy Euler-Bot! Estoy inspirado en el matemático suizo Leonhard Euler. Puedo ayudarte a realizar cálculos de fórmulas matemáticas de forma eficaz y rápida. ¿Cuáles son? Presiona los botones! 
 └————————————`
+/* ------------------------- Ciudadanía-Bot Derechos ------------------------ */
+var tituloDerechos = `┌————————————
+*Derechos fundamentales*
+└————————————
+┌————————————
+Los derechos y deberes de todo ciudadano, son las normas para fomentar la convivencia social y las relaciones entre los ciudadanos y las instituciones políticas que gestionan y organizan la sociedad. Estos se estructuran alrededor de dos principios: el que indica que el ejercicio de todo derecho implica deberes y el de reciprocidad, que impone la mutua participación del estado y la sociedad. 
+Según la constitución política del Perú, son derechos fundamentales de la persona: 
+┌————————————
+⚖️ La igualdad ante la ley, nadie debe ser discriminado por motivo de origen, raza, sexo, idioma, religión, opinión, condición económica o de cualquier otra índole.
+└————————————
+┌————————————
+🕊️ Derecho a la libertad y seguridad personal, no se permite forma alguna de restricción de la libertad personal salvo en los casos previstos por la ley, están prohibidas la esclavitud, la servidumbre y la trata de seres humanos en cualquiera de sus formas.
+└————————————
+┌————————————
+🏥 Derecho a la salud y medio familiar, todos tienen derecho a la protección de su salud, la del medio familiar y la de la comunidad, así como el deber de contribuir a su promoción y defensa.
+└————————————
+┌————————————
+📚 Derecho a la gratuidad y obligatoriedad de la educación en los niveles inicial, primaria y secundaria, en las instituciones del estado la educación es gratuita. En las universidades públicas, el Estado garantiza el derecho a educarse gratuitamente a los estudiantes que mantengan un rendimiento satisfactorio y no cuenten con los recursos económicos necesarios.
+└————————————
+`;
+/* ------------------------- Ciudadanía-Bot Comandos ------------------------ */
+var comandosCiudiBot = `┌————————————\nC O M A N D O S 👩‍💻\n└————————————`;
+var comandosTexto = `├ *Derechos ciudadanos*
+├ ¿Quieres sabes tus derechos fundamentales?
+├ /Derechos
+└————————————
+├ *Habilidades socioemocionales*
+├ Entender cómo son las emociones es fundamental.
+├ /Emociones
+└————————————
+├ *Fotos de perritos*
+├ /perritos
+└————————————
+├ *Fotos de patitos*
+├ /patitos
+└————————————
+├ *Fotos de zorritos*
+├ /zorritos
+└————————————
+├ *Clima de una zona*
+├ Conoce el clíma actual de una zona de tu preferencia alrededor del mundo.
+├ Temperatura [zona]
+└————————————
+├ *Traductor de Español a Inglés*
+├ Traduce un mensaje.
+├ /Calcular Fisica Velocidad [Distancia] [km, m, cm] [Tiempo] [hora, minuto, segundo] 
+└————————————
+├ *Fotos de patitos*
+├ DSDAS 
+├ /Calcular Fisica Velocidad [Distancia] [km, m, cm] [Tiempo] [hora, minuto, segundo] 
+└————————————`
+/* ---------------------- Habilidades socioemocionales ---------------------- */
+var tituloHabilidadesEmocionales = `┌————————————
+*Habilidades emocionales*
+└————————————
+┌————————————
+*Definición*
+└————————————
+┌————————————
+Son el conjunto de herramientas que permiten a las personas poder entender y regular sus propias emociones, sentir y mostrar empatía por los demás, establecer y desarrollar relaciones positivas, tomar 
+└————————————
+┌————————————
+Permiten el autoconocimiento para tener una mejor relación con nosotros mismos, conocernos y aceptarnos, cuidarnos y relacionarnos de manera positiva con nuestro entorno.
+└————————————
+┌————————————
+La evidencia acumulada muestra que ser cognitivamente inteligente no es suficiente para alcanzar el éxito académico, profesional y personal. El papel emocional empieza a tomar un papel protagónico en la sociedad, por lo tanto, la inteligencia cognitiva y emocional deben desarrollarse a la par en los centros de educación ya que el desarrollo socio emocional tiene impacto en la autoestima y en las habilidades cognitivas.
+└————————————
+┌————————————
+Las habilidades socioemocionales se adquieren y se desarrollan desde la infancia, siendo la adolescencia la etapa más significativa, continuando su desarrollo a lo largo de toda la vida.
+└————————————
+`
 const aleatorio = chistes[Math.floor(Math.random() * chistes.length)];
 /* -------------------------------- !SECTION -------------------------------- */
 class menu {
@@ -323,6 +402,9 @@ var textos = {
 ✅ Euler-Bot => Ideado para cálculos matemáticos, operaciones de física y conversión de unidades.
 └————————————
 ┌————————————
+✅ Medi-Bot => Pensado para ayudar al personal de salud con un asistente de cálculos ideal.
+└————————————
+┌————————————
 ✅ Riveri-Bot => Espacio dedicado a nuestro colegio I.E "Nicanor Rivera Cáceres" 7050 que transmite toda la información relevante.
 └————————————
 ┌————————————
@@ -334,6 +416,9 @@ var textos = {
     textoRCP,
     textoTips,
     textoDirectorio,
+    textoHemorragia,
+    tituloHabilidadesEmocionales,
+    tituloDerechos
 }
 // ────────────────────────────────────────────────────────────────────────────────
 const botMenu = new Buttons(
@@ -353,16 +438,14 @@ let saludoNuevoBoton = new Buttons(
 let botonIntroduccion = new Buttons(
     bodyTextoIntroduccion,
     [{body: 'Problemática 1️⃣', id: 'test-3'}, 
-    {body: 'Problemática 2️⃣', id: 'test-4'},
-    {body: '🔜 Siguiente'}],
+    {body: 'Problemática 2️⃣', id: 'test-4'}],
     tituloTextoIntroduccion,
     footerTextoIntroduccion);
 /* ------------------------------- Problema 1 ------------------------------- */
 let botonProblema1 = new Buttons(
     bodyTextoProblema1,
     [{body: 'Problemática 2️⃣'},
-    {body: 'Problematica 3️⃣'},
-    {body: '🔜 Siguiente (1)'}],
+    {body: 'Problematica 3️⃣'}],
     tituloTextoProblema1,
     footerTextoIntroduccion);
 /* ------------------------------- Problema 2 ------------------------------- */
@@ -426,6 +509,21 @@ let botonMediBot = new Buttons(
     [{body: 'Lista de comandos 👩‍💻'},
     {body: '¿Cómo puedo usar el Bot? 🥳'}],
     tituloMediBot,
+    footerTextoIntroduccion
+)
+/* ----------------------------- Ciudadania-Bot ----------------------------- */
+const botonCiudadania = new Buttons(
+    `┌————————————
+✅ Hey! ¿Cómo estás? soy Ciudadanía-Bot, pero puedes llamarme Ciudi
+└————————————`,
+    [{body: '👩‍💻 Lista de comandos'}],
+    '┌————————————\nCiudadanía-Bot 🌆\n└————————————',
+    'Presiona el botón');
+const botonComandosCiudi = new Buttons(
+    comandosTexto,
+    [{body: 'Traducir Hey, soy Ciudi. Un gusto traducirles un texto'},
+    {body: 'Temperatura Lima'}],
+    comandosCiudiBot,
     footerTextoIntroduccion
 )
 //
@@ -545,7 +643,7 @@ var seccionesFunciones1 = [{
     ],
 }, ];
 var listaBots = new List(
-    '', // body
+    '.', // body
     botonFuncionesMenu, // Boton a presionar
     seccionesFunciones1,
     'Lista de Bots', // tittle
@@ -666,6 +764,8 @@ module.exports = {
     botonP3Comandos,
     botonEulerBot,
     botonMediBot,
+    botonCiudadania,
+    botonComandosCiudi,
 /* -------------------------------- Especial -------------------------------- */
     instagram,
     facebook,

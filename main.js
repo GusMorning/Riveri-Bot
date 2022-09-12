@@ -7,11 +7,6 @@
 *   │::::::Whatsapp Web Puppeteer Library    : :  :   :    :     :     :     :│
     └─────────────────────────────────────────────────────────────────────────┘
 */
-const {Translate} = require('@google-cloud/translate').v2;
-
-// Instantiates a client
-const translate = new Translate({projectId: 'sigma-outlook-361916'});
-
 const {
 //  ┌───────────────────────────┐
     Client, //───────│
@@ -74,7 +69,7 @@ const {
     /* [6] */ calcularIMC, //── Ubicación y texto de Calculadora de IMC :::::::::: │
     /* [7] */ planEvolutivo, //── Ubicación de Plan Evolutiv [Plan Evolutivo] :::: │
     /* [8] */ chistesFuncion,
-    saludoNuevoBoton,
+saludoNuevoBoton,
     saludoNuevo,
     saludoNuevoBoton1,
     botonProblema1,
@@ -104,9 +99,12 @@ const {
     textos,
     listaBots,
     botonEulerBot,
-    botonMediBot, //---
+    botonMediBot,
+    botonCiudadania,
+    botonComandosCiudi, //---
 //  └──────────────────────────────────────────────────────────────────────────────┘
 } = require('./src/headers.js')
+
 /* 
     ┌─────────────────────────────────────────────────────────────────────────┐
 *   │::::::Miscelanios importados                                  :  :   :  :│
@@ -131,9 +129,11 @@ const {
     /* [2] */ const qrcode = require("qrcode-terminal");
     /* [3] */ const { Puppeteer } = require("puppeteer");
     /* [4] */ const ProgressBar = require('progress');
-const { measureMemory } = require("vm");
-const { ClientRequest } = require("http");
-const { query } = require("express");
+    /* [5] */ const { ClientRequest } = require("http");
+    /* [6] */ const { query } = require("express");
+    /* [7] */ const {Translate} = require('@google-cloud/translate').v2;
+    /* [8] */ const translate = new Translate({projectId: 'sigma-outlook-361916'});
+
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 //* │                          Definiciones para funciones                         │
@@ -176,6 +176,7 @@ const { query } = require("express");
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
     function empezarAuntenticacion(){
+        
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
 //  │ Autenticación del cliente correcta :::::::::::::::::::::::::::::::::::::::::::::::│
 //  └───────────────────────────────────────────────────────────────────────────────────┘
@@ -224,7 +225,9 @@ const { query } = require("express");
     client.initialize();
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 };
+
 empezarAuntenticacion();
+
 client.on("message", async (message) => {
 // ────────────────────────────────────────────────────────────────────────────────
 /* 
@@ -341,10 +344,16 @@ else if (['/tips', '/tip', 'tips', 'tip', 'Tips', '/Tips'].includes(message.body
 else if (['Directorio de teléfonos', '/teléfonos', '/Teléfonos', 'Teléfonos', 'teléfonos'].includes(message.body)){
     enviarMedia('./media/imagenDirectorio.png',textos.textoDirectorio)
 }
+else if (['hemorragia', '/hemorragia', 'Hemorragia', '/Hemorragia '].includes(msg.body)){
+    enviarMensaje(textos.textoHemorragia)
+}
 else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
     enviarMedia(botones.ubicacionProblema2)
     enviarAudio('./media/medi-bot.mp3')
     client.sendMessage(message.from, botonMediBot)
+}
+else if (['Riveri-Bot', 'Riveri-bot'].includes(message.body)){
+    client.sendMessage(message.from, botMenu);
 }
 else if (msg.body.startsWith('Temperatura ')){
     let query = msg.body.slice(12)
@@ -369,12 +378,41 @@ enviarMensaje(mensaje);
   }).catch(function(error) {
     enviarAudio('./media/error.mp3')
     enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
-    console.log('[-] Error: ' + 'Fallo en API temperatura'.red);
+    console.log('[-] Error: ' + 'Fallo en API'.red);
   });
 }
 else if (msg.body.startsWith('Traducir ')) {
     const texto  = msg.body.slice(9);
     quickStart(texto);
+}
+else if (msg.body.startsWith('Boton ')){
+    const texto  = msg.body.slice(5);
+    const saludoNuevoBoton1 = new Buttons(
+        `┌————————————
+✅ Hey! ¿Cómo estás? soy Ciudadanía-Bot, pero puedes llamarme Ciudi
+└————————————`,
+        [{body: '✅ ¿Cómo usar?'}, 
+        {body: '👩‍💻 Lista de comandos'}],
+        '┌————————————\nCiudadanía-Bot 🌆\n└————————————',
+        'Presiona el botón');
+    enviarMensaje(texto)
+    client.sendMessage(message.from, saludoNuevoBoton1)
+}
+else if (['Ciudadanía-Bot', 'Ciudadania-bot'].includes(msg.body)){
+    enviarMensaje(botonCiudadania);
+    enviarMedia('./media/imagenCiudadaniaBot.png.png')
+}
+else if (['👩‍💻 Lista de comandos'].includes(msg.body)){
+    enviarMensaje(botonComandosCiudi)
+}
+else if (['✅ ¿Cómo usar?'].includes(msg.body)){
+
+}
+else if (['/derechos', 'Derechos', 'derechos', '/Derechos'].includes(msg.body)){
+    enviarMensaje(textos.tituloDerechos)
+}
+else if (['emociones', 'socioemocionales', '/emociones', '/Emociones'].includes(msg.body)){
+    enviarMensaje(textos.tituloHabilidadesEmocionales)
 }
 else if (ignoreCase.includes(msg.body, 'Hola')) {
     enviarMedia(botones.ubicacionSaludo);
@@ -602,6 +640,7 @@ switch(msg.body){
         enviarMedia(calcularIMC.ubicacion, calcularIMC.texto)
         break;
     case 'Fotos de perritos':
+        case '/perritos':
         var data;
         fetch('https://random.dog/woof.json', {
             method: 'GET'
@@ -613,9 +652,14 @@ switch(msg.body){
                 const media = await MessageMedia.fromUrl(api);
                 client.sendMessage(message.from, media);
             }, DELAY_TIME);
-        });
+        }).catch(function(error) {
+            enviarAudio('./media/error.mp3')
+            enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
+            console.log('[-] Error: ' + 'Fallo en API'.red);
+          });
         break;
     case 'Fotos de patitos':
+        case '/patitos':
         var data;
         fetch('https://random-d.uk/api/random', {
             method: 'GET'
@@ -627,9 +671,14 @@ switch(msg.body){
                 const media = await MessageMedia.fromUrl(api);
                 client.sendMessage(message.from, media);
             }, DELAY_TIME);
-        });
+        }).catch(function(error) {
+            enviarAudio('./media/error.mp3')
+            enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
+            console.log('[-] Error: ' + 'Fallo en API'.red);
+          });
         break;
     case 'Fotos de zorritos':
+        case '/zorritos':
         var data;
         fetch('https://randomfox.ca/floof/', {
             method: 'GET'
@@ -641,7 +690,11 @@ switch(msg.body){
                 const media = await MessageMedia.fromUrl(api);
                 client.sendMessage(message.from, media);
             }, DELAY_TIME);
-        });
+        }).catch(function(error) {
+            enviarAudio('./media/error.mp3')
+            enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
+            console.log('[-] Error: ' + 'Fallo en API'.red);
+          });
         break;
 }
 
@@ -676,7 +729,8 @@ if (msg.body.startsWith('EnviarOpciones ')) {
     chat.sendSeen();
     console.log(message, "  ", msg.body);
     if (message.includes("Opciones")) {
-        client.sendMessage(number, listaOpciones);
+        client.sendMessage(number, listaBots);
+    client.sendMessage(number, botonMediBot)
     }
     if (message.includes("Saludo")) {
         client.sendMessage(number, listaSaludo2)
