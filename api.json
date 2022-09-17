@@ -1,1 +1,41 @@
-AIzaSyBgT66QiRfXCQMZAHBKGAWBb4xwzkwdVdg
+{
+    location: {
+      name: 'Lima',
+      region: 'Lima',
+      country: 'Peru',
+      lat: -12.05,
+      lon: -77.05,
+      tz_id: 'America/Lima',
+      localtime_epoch: 1663426022,
+      localtime: '2022-09-17 9:47'
+    },
+    current: {
+      last_updated_epoch: 1663425000,
+      last_updated: '2022-09-17 09:30',
+      temp_c: 16.5,
+      temp_f: 61.7,
+      is_day: 1,
+      condition: {
+        text: 'Sunny',
+        icon: '//cdn.weatherapi.com/weather/64x64/day/113.png',
+        code: 1000
+      },
+      wind_mph: 8.3,
+      wind_kph: 13.3,
+      wind_degree: 172,
+      wind_dir: 'S',
+      pressure_mb: 1016,
+      pressure_in: 30.01,
+      precip_mm: 0,
+      precip_in: 0,
+      humidity: 78,
+      cloud: 20,
+      feelslike_c: 16.5,
+      feelslike_f: 61.7,
+      vis_km: 10,
+      vis_miles: 6,
+      uv: 5,
+      gust_mph: 9.6,
+      gust_kph: 15.5
+    }
+  }

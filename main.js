@@ -289,6 +289,21 @@ client.on("message", async (message) => {
 └————————————`;
             enviarMensaje(mensaje)
           }
+          const delay = ms => new Promise(res => setTimeout(res, ms));
+          const apiTiempoActual = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '26934089aemsh5d595b71f3864d3p1b4506jsn3a2e9975b98f',
+                'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+            }
+        };
+        const apiAstronomia = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '26934089aemsh5d595b71f3864d3p1b4506jsn3a2e9975b98f',
+                'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+            }
+        };
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
 if (msg.body.startsWith('pruebaMensaje')) {
@@ -355,6 +370,72 @@ else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
 else if (['Riveri-Bot', 'Riveri-bot'].includes(message.body)){
     client.sendMessage(message.from, botMenu);
 }
+else if (msg.body.startsWith('Temp ')){
+    let q = msg.body.slice(5)
+let diaOnoche = {};
+let mensaje = {};
+let mensajeAstronomia = {};
+    fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${q}`, apiTiempoActual).then(response => response.json()).then(response => {
+        let ubicacion = response.location;
+        let actual = response.current;
+        if (actual.is_day === 1) {diaOnoche = 'Día ☀️'} else {diaOnoche = 'Noche 🌃'}
+        mensaje = `┌————————————
+C I U D A D *${ubicacion.name}* 🗺️
+└————————————
+├🍁*Nombre*: ${ubicacion.name}
+├📍 *País*: ${ubicacion.region}
+├🚅*Latitud*: ${ubicacion.lat}
+├🚅*Longitud*: ${ubicacion.lon}
+├🕰️*Zona horaria*: ${ubicacion.tz_id}
+├⌚*Fecha y hora*: ${ubicacion.localtime} 
+└————————————
+┌————————————
+Meterelogía
+└————————————
+┌————————————
+├ Momento del escaneo: ${actual.last_updated}
+├ Es de *${diaOnoche}*
+├🌧️Clima: ${actual.condition.text}
+├🌫️Nubes: ${actual.cloud} %
+├🌡️ Temperatura: ${actual.temp_c} C° ${actual.temp_f} F°
+├🌡️ Sensación térmica: ${actual.feelslike_c} C°
+├💨 Velocidad del viento: ${actual.wind_kph} kph
+├🧭 Dirección: ${actual.wind_dir}
+├🌬️ Presión atmósferica: ${actual.pressure_mb} mb
+├🚿 Precipitación: ${actual.precip_mm} mm
+├💧 Humedad: ${actual.humidity} %
+└————————————`;
+	})
+	.catch(function(error) {
+        enviarAudio('./media/error.mp3')
+        enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
+        console.log('[-] Error: ' + 'Fallo en API'.red);
+      });
+    fetch(`https://weatherapi-com.p.rapidapi.com/astronomy.json?q=${q}`, apiAstronomia).then(response => response.json()).then(response => {
+        let faseLunar = {};
+		let astronomia = response.astronomy.astro;
+        if (astronomia.moon_phase === 'Waning Gibbous'){faseLunar = '🌖'}
+        mensajeAstronomia = `┌————————————
+Astronomía
+└————————————
+┌————————————
+├ *Amanecer* a las: ${astronomia.sunrise} 
+├ *Atarder a las: ${astronomia.sunset} 
+├ *Tiempo de puesta de la luna*: ${astronomia.moonrise}
+├ *Sálida de la luna*: ${astronomia.moonset} 
+├ *Fase Lunar*: ${astronomia.moon_phase} ${faseLunar}
+├ *Iluminación de la Luna*: ${astronomia.moon_illumination} %
+└————————————`
+	})
+	.catch(function(error) {
+        enviarAudio('./media/error.mp3')
+        enviarMensaje('┌————————————\n*Se ha producido un error*\n└————————————')
+        console.log('[-] Error: ' + 'Fallo en API'.red);
+      });
+	await delay(2000);
+
+    enviarMensaje(`${mensaje}\n${mensajeAstronomia}`)
+}
 else if (msg.body.startsWith('Temperatura ')){
     let query = msg.body.slice(12)
     const url = 'http://api.weatherstack.com/current?access_key=00b5423454f994931ec9a049dc7b1b06&query=' + query;
@@ -362,17 +443,38 @@ else if (msg.body.startsWith('Temperatura ')){
   .then(response => response.json())
   .then((data) => {
     let data1 = data.current.weather_descriptions;
+    let diaOnoche = {};
+    if (actual.is_day === 1) {
+        diaOnoche = 'Día ☀️'
+    } else {
+        diaOnoche = 'Noche 🌃'
+    }
     const mensaje = `┌————————————
-C I U D A D *${data.location.name}* 🗺️
+C I U D A D *${ubicacion.name}* 🗺️
 └————————————
-├🍁*Nombre*: ${data.location.name}
-├📍 *País*: ${data.location.country}
-├🚅*Latitud*: ${data.location.lat}
-├🕰️*Zona horaria*: ${data.location.timezone_id}
-├⌚*Fecha y hora*: ${data.location.localtime}
-├🌧️*Clima*: ${data1}
-├🌡️ *Temperatura*: ${data.current.temperature}
-├💧 *Humedad*: ${data.current.humidity}
+├🍁*Nombre*: ${ubicacion.name}
+├📍 *País*: ${ubicacion.region}
+├🚅*Latitud*: ${ubicacion.lat}
+├🚅*Longitud*: ${ubicacion.lon}
+├🕰️*Zona horaria*: ${ubicacion.tz_id}
+├⌚*Fecha y hora*: ${ubicacion.localtime} 
+└————————————
+┌————————————
+Meterelogía
+└————————————
+┌————————————
+├ Momento del escaneo: ${actual.last_updated}
+├🌧️*Clima*: ${actual.condition.text}
+├🌧️*Nubes*: ${actual.cloud} %
+├🌡️ *Temperatura en C°*: ${actual.temp_c}
+├🌡️ *Temperatura en F°*: ${actual.temp_f}
+├🌡️ *Sensación térmica*: ${actual.feelslike_c} C°
+├ Es de *${diaOnoche}*
+├💨 *Velocidad del viento*: ${actual.wind_kph} kph
+├🧭 *Dirección del viento*: ${actual.wind_dir}
+├🌬️ *Presión atmósferica*: ${actual.pressure_mb} mb
+├🚿 *Precipitación*: ${actual.precip_mm} mm
+├💧 *Humedad*: ${actual.humidity} %
 └————————————`;
 enviarMensaje(mensaje);
   }).catch(function(error) {
