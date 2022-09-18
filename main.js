@@ -383,7 +383,7 @@ let mensajeAstronomia = {};
 C I U D A D *${ubicacion.name}* 🗺️
 └————————————
 ├🍁*Nombre*: ${ubicacion.name}
-├📍 *País*: ${ubicacion.region}
+├📍 *País*: ${ubicacion.country}
 ├🚅*Latitud*: ${ubicacion.lat}
 ├🚅*Longitud*: ${ubicacion.lon}
 ├🕰️*Zona horaria*: ${ubicacion.tz_id}
