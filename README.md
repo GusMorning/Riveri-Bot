@@ -306,4 +306,7 @@ function empezarAuntenticacion(){
 ``` 
 # Esquema didáctico en el Bot
 ![riveri-bot_esquema drawio](https://user-images.githubusercontent.com/100885703/187082582-b521772c-bce4-46d8-9fd6-552f50beaeb5.png)
+[Presionar aquí para observar el pdf del diagrama actualizado](https://github.com/GusMorning/Riveri-Bot/files/9634919/riveri-bot_esquema-Pagina-3.drawio.pdf)
+
+
 Agradecimientos a https://github.com/pedroslopez/whatsapp-web.js
