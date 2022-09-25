@@ -372,6 +372,14 @@ else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
 else if (['Riveri-Bot', 'Riveri-bot'].includes(message.body)){
     client.sendMessage(message.from, botMenu);
 }
+else if (msg.body.startsWith('/R ')){
+    let operacion = msg.body.slice(2);
+    function evil(fn) {
+        return new Function('return ' + fn)();
+      }
+    const operacionResultadoEvil = evil(operacion);
+    enviarMensaje('El resultado es: ' + operacionResultadoEvil)
+}
 else if (msg.body.startsWith('Temp ')){
     let q = msg.body.slice(5)
 let diaOnoche = {};
