@@ -14,6 +14,7 @@
     "@google-cloud/dialogflow": "^4.6.0",
     "@google-cloud/translate": "^7.0.2",
     "chalk": "^5.0.1",
+    "child-process": "^1.0.2",
     "cli-spinners": "^2.7.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
@@ -35,9 +36,11 @@
     "readline-sync": "^1.4.10",
     "socket.io": "^4.4.1",
     "uuid": "^9.0.0",
-    "whatsapp-web.js": "^1.17.1",
+    "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js#fix-buttons-list",
     "xhr2": "^0.2.1",
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.16.9",
+    "yarn": "^1.22.19",
+    "ytdl-core": "^4.11.2"
   },
   "devDependencies": {
     "pm2": "^5.1.2",

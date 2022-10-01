@@ -134,7 +134,7 @@ saludoNuevoBoton,
     /* [7] */ const {Translate} = require('@google-cloud/translate').v2;
     /* [8] */ const translate = new Translate({projectId: 'sigma-outlook-361916'});
     const dialogflow = require("./dialogflow.js");
-
+    const ytdl = require('ytdl-core');
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 //* │                          Definiciones para funciones                         │
@@ -311,6 +311,34 @@ client.on("message", async (message) => {
 if (msg.body.startsWith('pruebaMensaje')) {
     console.log(msg);
 } 
+
+else if (msg.body.startsWith('ymp3')){
+    const execSync = require('child_process').execSync;
+    try {
+        const chat = await msg.getChat();
+        const contact = await msg.getContact();
+         chat.sendStateTyping();
+        const { MessageMedia } = require('whatsapp-web.js');
+        //const { exec } = require("child_process")
+        var cp = `${contact.number}`
+        var it = (msg.body.slice(5))
+        let options = {stdio : 'pipe' };
+        //home/xxxx/yt-dlp is your path off yt-dlp
+        let stdout = execSync(`/home/xxxx/yt-dlp -S "res:144" --extract-audio --audio-format mp3 -o ${contact.number}y.mp3 --max-filesize 26121471 --force-overwrites ` + it + `` , options);
+        chat.sendStateTyping();
+        const media = MessageMedia.fromFilePath(`${contact.number}y.mp3`);
+        chat.sendMessage(`download done ${media.data.length}`);
+        if (`${media.data.length}` > 110000){
+        chat.sendMessage(media, { sendMediaAsDocument: true });
+        }
+        else {
+        chat.sendMessage(media); 
+        }
+        //execSync('rmdir doesntexist' , options);//will exit failure and give stderr
+      } catch (e) {
+        msg.reply("aleya bingung: keknya file nya kebesaran deh") ;
+      }
+}
 else if (msg.body.startsWith('saludoNuevo')) {
     enviarMedia(botones.ubicacionSaludo);
     enviarAudio(`./media/saludo1.mp3`)
