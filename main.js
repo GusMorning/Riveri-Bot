@@ -162,8 +162,14 @@ saludoNuevoBoton,
     const uuid = require("uuid");
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
-    /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	puppeteer: {
-		args: ['--no-sandbox'],}});
+    /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	
+        puppeteer: { 
+            headless: true,
+            executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+            ignoreHTTPSErrors: true,
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        }
+    });
     const component = new Buttons('test', [{body: 'Test', id: 'test-1'}], 'title', 'footer') // Reply button
 //  └──────────────────────────────────────────────────────────────────────────────┘
 
@@ -324,7 +330,7 @@ else if (msg.body.startsWith('ymp3')){
         var it = (msg.body.slice(5))
         let options = {stdio : 'pipe' };
         //home/xxxx/yt-dlp is your path off yt-dlp
-        let stdout = execSync(`/home/xxxx/yt-dlp -S "res:144" --extract-audio --audio-format mp3 -o ${contact.number}y.mp3 --max-filesize 26121471 --force-overwrites ` + it + `` , options);
+        let stdout = execSync(`C:/Users/asuka/Documents/GitHub/Riveri-Bot/yt-dlp -S "res:144" --extract-audio --audio-format mp3 -o ${contact.number}y.mp3 --max-filesize 26121471 --force-overwrites ` + it + `` , options);
         chat.sendStateTyping();
         const media = MessageMedia.fromFilePath(`${contact.number}y.mp3`);
         chat.sendMessage(`download done ${media.data.length}`);
@@ -336,8 +342,36 @@ else if (msg.body.startsWith('ymp3')){
         }
         //execSync('rmdir doesntexist' , options);//will exit failure and give stderr
       } catch (e) {
-        msg.reply("aleya bingung: keknya file nya kebesaran deh") ;
+        console.log(e);
+        msg.reply("error") ;
       }
+}
+else if (msg.body.startsWith('yt')){
+    const execSync = require('child_process').execSync;
+    try {
+        const chat = await msg.getChat();
+        const contact = await msg.getContact();
+         chat.sendStateTyping();
+        const { MessageMedia } = require('whatsapp-web.js');
+        //const { exec } = require("child_process")
+        var cp = `${contact.number}`
+        var it = (msg.body.slice(3))
+        let options = {stdio : 'pipe' };
+        //home/xxxx/yt-dlp is your path off yt-dlp
+        let stdout = execSync(`C:/Users/asuka/Documents/GitHub/Riveri-Bot/yt-dlp -f "(mp4)[height<480]" -o ${contact.number}.mp4 --max-filesize 26121471 --force-overwrites ` + it + `` , options);
+        chat.sendStateTyping();
+        const media = MessageMedia.fromFilePath(`${contact.number}.mp4`);
+        chat.sendMessage(`download done ${media.data.length}`);
+        if (`${media.data.length}` > 110000){
+        chat.sendMessage(media);
+    } 
+    else {
+        chat.sendMessage(media); 
+    }
+    
+}catch (e) {
+    console.log(e);
+}
 }
 else if (msg.body.startsWith('saludoNuevo')) {
     enviarMedia(botones.ubicacionSaludo);
@@ -397,7 +431,7 @@ else if (['Medi-Bot', 'medi-bot'].includes(message.body)) {
     enviarAudio('./media/medi-bot.mp3')
     client.sendMessage(message.from, botonMediBot)
 }
-else if (['Riveri-Bot', 'Riveri-bot'].includes(message.body)){
+else if (['0Riveri-Bot1', '0Riveri-bot1'].includes(message.body)){
     client.sendMessage(message.from, botMenu);
 }
 else if (msg.body.startsWith('/R ')){
@@ -764,10 +798,31 @@ switch(msg.body){
         enviarMedia(planEvolutivo.ubicacion)
         break;
     
-    case 'Chiste1001':
-        case 'Cuenta un chiste, Riveri-Bot!':
-        msg.reply(chistesFuncion.funcion)
-        break;
+        case 'Chiste':
+            const chistes = [
+                "¿Cuál es el pez más desagradable? El pezuña",
+                "- Era un niño tan feo, pero tan feo, que cuando la madre dio a luz, el médico en vez de felicitarla la regañó",
+                "- Tómense una foto sin flash... Y el pobre de Flash se fue sin su foto.",
+                "- Dicen que fumar es malo... ¡Y lo metieron a la cárcel! ",
+                "- Le dice un encendedor a un fósforo: ¿Por qué cada vez que te frotan pierdes la cabeza? El fósforo responde: Suelta la piedra, y pelea como los hombres.",
+                "¿Cómo llamarías a un perro sin patas? Da igual como lo llames, no va a venir.",
+                "Cuando muera, quiero irme en paz como hizo mi abuelo, durante la siesta – y no gritando como el resto de pasajeros que iban en su coche.",
+                "Tras doce años de terapia mi siquiatra dijo algo que hizo brotar las lágrimas en mis ojos. Dijo: “I don’t speak Spanish”.",
+                "Cuando me raptaron mi padres entraron en acción: pusieron mi habitación en alquiler.",
+                "Creo que hacer pruebas con animales es horrible, se ponen nerviosos y dan las respuestas equivocadas.",
+                "Lo intentaste con todas tus fuerzas y fracasaste, La lección es: ‘nunca lo intentes’. -Homer Simpson",
+                "Le dije a mi doctor que me había roto la pierna en dos sitios y me dijo que me alejara de esos lugares. – Henny Youngman",
+                "Todo el mundo tiene memoria fotográfica, solo que algunos andan sin película.",
+                "Errar es humano, pero echarle la culpa al otro es más humano todavía. ",
+                "La pereza es la madre de todos los vicios, y como a la madre hay que respetarla... ",
+                "Nada en vano, todo en vino.",
+                "Si un pajarito te dice que estás loco, debes estarlo pues los pájaros no hablan. ",
+                "No te tomes la vida en serio, al fin y al cabo no saldrás vivo de ella. ",
+                "Mátate estudiando y serás un cadáver culto. "
+            ];
+            const aleatorio = chistes[Math.floor(Math.random() * chistes.length)];
+            client.sendMessage(message.from, aleatorio)
+            break;
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
 * │ Funciones del Bot                                                       │

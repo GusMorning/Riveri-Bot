@@ -780,5 +780,6 @@ module.exports = {
     semiPerimetro,
     calcularVelocidadKM,
     calcularVelocidad,
+    aleatorio,
     
 }
