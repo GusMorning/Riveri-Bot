@@ -160,6 +160,8 @@ saludoNuevoBoton,
     diasSemanales[fechaHora.getDay()], 
     fechaHora.toLocaleDateString());
     const uuid = require("uuid");
+const { url } = require("inspector");
+const { parse } = require("path");
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
     /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	
@@ -266,6 +268,20 @@ client.on("message", async (message) => {
                 });
             }, DELAY_TIME);
         };
+        function enviarMediaURL(url, captionMensaje) {
+            setTimeout(async () => {
+                const media = await MessageMedia.fromUrl(url, {unsafeMime: true});
+                client.sendMessage(message.from, media, {
+                    caption: captionMensaje
+                });
+            }, DELAY_TIME)
+        }
+        function enviarMediaURLcaption(url, caption) {
+            setTimeout(async () => {
+                const media = await MessageMedia.fromUrl(url+caption, {unsafeMime: true});
+                client.sendMessage(message.from, media);
+            }, DELAY_TIME)
+        }
         function enviarMensaje(mensaje){
             client.sendMessage(msg.from, mensaje)
         }
@@ -719,6 +735,45 @@ ${msg.body}
             enviarMedia('./media/imagenCalcularCateto.png', mensaje)
         }
     }
+    else if (['Geometría', "Geometria", "geometría", "geometria", "G", "g"].includes(figura)){
+        if (clasificacion === 'S') {
+            msg.reply("sopas")
+        }
+    }
+    else if (['Porcentaje', 'P'].includes(figura)){
+        if (['Cantidad', "C"].includes(clasificacion)){
+            // Porcentaje de una cantidad
+            // 5% de 40
+            a = parseFloat(a)
+            resultado = b * (a/100)
+            msg.reply(`┌————————————
+*Porcentaje de una cantidad*
+└————————————
+┌————————————
+Resultado
+${a}% de ${b}
+= ${resultado}
+└————————————
+            `)
+            
+        }
+        if (["Total", "T", "t"].includes(clasificacion)){
+            // Calcular el total sabiendo el porcentaje
+            // 20% es 5 
+            a = parseFloat(a)
+            resultado = (100 * b) / a
+                        msg.reply(`┌————————————
+*Porcentaje de una cantidad*
+└————————————
+┌————————————
+Resultado
+100% sabiendo que el ${a} es ${b}
+= ${resultado}
+└————————————
+            `)
+        }
+    }
+
     else if (figura === 'Fisica'){
         if (clasificacion === 'Velocidad') {
             let velocidad = calcularVelocidad(a1, c1);
@@ -751,9 +806,91 @@ ${msg.body}
     }
 }
 
+else if(msg.body.startsWith('Teoría')){
+    msg.reply(`┌————————————
+*Reglas de cálculo*
+└————————————
+┌————————————
+Definiciones:
+a: Número a
+b: Número b
+c: Número c
+└————————————
+┌————————————
+*Aditivo Identidad*
+a + 0 = a
+└————————————
+┌————————————
+*Inverso aditivo*
+a + (-a) = 0
+└————————————
+┌————————————
+*Asociativa suma*
+(a + b) + c = a + (b + c)
+└————————————
+┌————————————
+*Conmutativa suma*
+a + b = b + a
+└————————————
+┌————————————
+*Sustracción*
+a - b = a + (-b)
+└————————————
+┌————————————
+*Identidad multiplicativa*
+a * 1 = a
+└————————————
+┌————————————
+*Inverso multiplicativo*
+a * (1/a) = 1 (if a is not 0)
+└————————————
+┌————————————
+*Zero elemento multiplicación*
+a * 0 = 0
+└————————————
+┌————————————
+*Asociatividad multiplicación*
+(a * b) * c = a * (b * c)
+└————————————
+┌————————————
+*Conmutativa multiplicación*
+a * b = b * a
+└————————————
+┌————————————
+*Ley Distributiva conmutativa*
+a(b + c) = ab + ac
+└————————————
+┌————————————
+*División*
+a / b = a(1/b)
+└————————————
 
+    `)
+}
 
+else if (msg.body.startsWith(".gato")){
+    let caption = msg.body.slice(6)
+    setTimeout(async () => {
+        const media = await MessageMedia.fromUrl("https://cataas.com/cat/says/"+caption, {unsafeMime: true});
+        client.sendMessage(message.from, media, {caption: caption});
+    }, DELAY_TIME)
+}
+else if (msg.body.startsWith(".animeFact")){
+    fetch("https://animechan.vercel.app/api/random")
+    .then(response => response.json()).
+    then(quote => {
+        msg.reply(`🕵️‍♀️ *Frases de Anime*
+[ + ] *Anime*: ${quote.anime}
+[ + ] *Personaje*: ${quote.character}
+[ + ] *Frase*: ${quote.quote}`)
+    })
+}
 
+else if (msg.body.startsWith('.media')){
+    let url = message.body.split(' ')[1];
+    let caption = message.body.split(' ')[2];
+    enviarMediaURLcaption(url, caption)
+}
 
 
 
