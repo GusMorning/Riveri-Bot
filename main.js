@@ -892,6 +892,33 @@ else if (msg.body.startsWith('.media')){
     enviarMediaURLcaption(url, caption)
 }
 
+else if (msg.body.startsWith('.mat')){
+    let operacionOriginal = msg.body.slice(5)
+    let operacion = msg.body.slice(5)
+    if (operacion.includes("+")) {
+        operacion = operacion.replace("+", "%2B")
+      }
+      const url = `http://api.wolframalpha.com/v2/query?appid=EL5KV3-XH24YPGWT6&input="${operacion}"&podstate=Result__Step-by-step%20solution&format=image&output=json`;
+      fetch(url)
+        .then(response => response.json())
+        .then((data) => {
+          data = data.queryresult.pods[4].subpods[0].img.alt
+          msg.reply(`┌————————————
+*Calculadora Multiusos*
+└————————————
+┌————————————
+*Operacion:*
+${operacionOriginal}
+*Resultado:*
+${data}
+└————————————
+┌————————————┐
+- *Euler-Bot©*
+└————————————┘
+`)
+        });
+}
+
 
 
 
