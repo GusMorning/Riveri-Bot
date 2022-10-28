@@ -13,12 +13,11 @@ console.log(operacion);
 
 
 
-/**
+
 const url = `http://api.wolframalpha.com/v2/query?appid=EL5KV3-XH24YPGWT6&input="${operacion}"&podstate=Result__Step-by-step%20solution&format=image&output=json`;
 fetch(url)
   .then(response => response.json())
   .then((data) => {
-    data = data.queryresult.pods[4].subpods[0].img.alt
+    data = data.queryresult.pods[4].subpods[0].img
     console.log(data);
   });
-   */

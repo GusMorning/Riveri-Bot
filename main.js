@@ -135,6 +135,7 @@ saludoNuevoBoton,
     /* [8] */ const translate = new Translate({projectId: 'sigma-outlook-361916'});
     const dialogflow = require("./dialogflow.js");
     const ytdl = require('ytdl-core');
+    const axios = require('axios');
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 //* │                          Definiciones para funciones                         │
@@ -328,6 +329,11 @@ client.on("message", async (message) => {
                 'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
             }
         };
+        async function gatitos(){
+            const response = await axios('https://catfact.ninja/fact');
+            msg.reply(`*Random cat fact*:
+${response.data.fact}`);
+        }
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
 if (msg.body.startsWith('pruebaMensaje')) {
@@ -892,6 +898,9 @@ else if (msg.body.startsWith('.media')){
     enviarMediaURLcaption(url, caption)
 }
 
+else if (message.body.startsWith('.catFac')){
+    gatitos()
+}
 else if (msg.body.startsWith('.mat')){
     let operacionOriginal = msg.body.slice(5)
     let operacion = msg.body.slice(5)
