@@ -136,6 +136,7 @@ saludoNuevoBoton,
     const dialogflow = require("./dialogflow.js");
     const ytdl = require('ytdl-core');
     const axios = require('axios');
+    const mathsteps = require('mathsteps');
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 //* │                          Definiciones para funciones                         │
@@ -927,7 +928,17 @@ ${data}
 `)
         });
 }
-
+else if (msg.body.startsWith('.m')){
+    let operacion = msg.body.slice(3);
+    const steps = mathsteps.solveEquation(operacion);
+    let result = {}
+    steps.forEach(step => {
+    result += "[+]" + step.oldEquation.ascii() + '\n';  // e.g. before change: 2x + 3x = 35
+    result += "[+]" + step.changeType + '\n';                  // e.g. change: SIMPLIFY_LEFT_SIDE
+    result += "[+]" + step.newEquation.ascii() + '\n';   // e.g. after change: 5x = 35
+});
+    msg.reply(result)
+}
 
 
 
