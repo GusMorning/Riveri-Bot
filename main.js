@@ -164,6 +164,7 @@ saludoNuevoBoton,
     const uuid = require("uuid");
 const { url } = require("inspector");
 const { parse } = require("path");
+const json2plain = require("json2plain");
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
     /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	
@@ -294,6 +295,18 @@ client.on("message", async (message) => {
         function climaEmoji(data1){
             if(data1 === 'Patchy rain possible') return 'Posible lluvia irregular 🌧️'
         };
+        function ucFirst(string) {
+            return '*[' + string.charAt(0).toUpperCase() + string.slice(1) + ']*';
+          }
+          
+          var options = { 
+            list: '> ',
+            indent: '',
+            separator: ' = ',
+            formatKey: ucFirst,
+            formatValue: ucFirst
+          };
+          
         async function quickStart(texto) {
             // The text to translate
             const text = texto;
@@ -337,6 +350,7 @@ ${response.data.fact}`);
         }
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
+
 if (msg.body.startsWith('pruebaMensaje')) {
     console.log(msg);
 } 
@@ -358,7 +372,7 @@ else if (msg.body.startsWith('ymp3')){
         const media = MessageMedia.fromFilePath(`${contact.number}y.mp3`);
         chat.sendMessage(`download done ${media.data.length}`);
         if (`${media.data.length}` > 110000){
-        chat.sendMessage(media, { sendMediaAsDocument: true });
+        chat.sendMessage(media);
         }
         else {
         chat.sendMessage(media); 
@@ -938,15 +952,23 @@ else if (msg.body.startsWith('.m')){
     result += "[+]" + step.changeType + '\n';                  // e.g. change: SIMPLIFY_LEFT_SIDE
     result += "[+]" + step.newEquation.ascii() + '\n';   // e.g. after change: 5x = 35
 });
-    msg.reply(result)
+    client.sendMessage(message.from, result)
 }
 
 else if (msg.body.startsWith('.perrito')){
-    fetch('https://dog.ceo/api/breeds/image/random').then(response => response.json).then((data) => {
+    fetch('https://dog.ceo/api/breeds/image/random').then(response => response.json()).then((data) => {
         enviarMediaURL(data.message)
     })
 }
-
+else if (msg.body.startsWith('.js')){
+    let url = msg.body.split(' ')[1]
+    fetch(url)
+    .then(response => response.json())
+    .then(function(response){
+        msg.reply(json2plain(response, options))
+    })
+}
+// Error: response.join is not a function
 
 
 
@@ -1115,7 +1137,6 @@ if (msg.body.startsWith('EnviarOpciones ')) {
     console.log(message, "  ", msg.body);
     if (message.includes("Opciones")) {
         client.sendMessage(number, listaBots);
-    client.sendMessage(number, botonMediBot)
     }
     if (message.includes("Saludo")) {
         client.sendMessage(number, listaSaludo2)
