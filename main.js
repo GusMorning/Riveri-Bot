@@ -928,6 +928,7 @@ ${data}
 `)
         });
 }
+/**
 else if (msg.body.startsWith('.m')){
     let operacion = msg.body.slice(3);
     const steps = mathsteps.solveEquation(operacion);
@@ -939,7 +940,13 @@ else if (msg.body.startsWith('.m')){
 });
     msg.reply(result)
 }
+ */
 
+else if (msg.body.startsWith('.perrito')){
+    fetch('https://dog.ceo/api/breeds/image/random').then(response => response.json).then((data) => {
+        enviarMediaURL(data.message)
+    })
+}
 
 
 
