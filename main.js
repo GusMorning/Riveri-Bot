@@ -166,6 +166,9 @@ const { url } = require("inspector");
 const { parse } = require("path");
 const json2plain = require("json2plain");
 const execSync = require('child_process').execSync;
+const thiccysapi = require('textmaker-thiccy');
+var https = require('https'),                                                
+    Stream = require('stream').Transform
 
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -276,16 +279,14 @@ client.on("message", async (message) => {
         function enviarMediaURL(url, captionMensaje) {
             setTimeout(async () => {
                 const media = await MessageMedia.fromUrl(url, {unsafeMime: true});
-                client.sendMessage(message.from, media, {
-                    caption: captionMensaje
-                });
+                client.sendMessage(message.from, media);
             }, DELAY_TIME)
         }
         function enviarMediaURLcaption(url, caption) {
             setTimeout(async () => {
                 const media = await MessageMedia.fromUrl(url+caption, {unsafeMime: true});
                 client.sendMessage(message.from, media);
-            }, DELAY_TIME)
+            }, 5000)
         }
         function enviarMensaje(mensaje){
             client.sendMessage(msg.from, mensaje)
@@ -351,6 +352,34 @@ client.on("message", async (message) => {
 ${response.data.fact}`);
         }
         const contact = await msg.getContact();
+        function apiTextPro(url, input){
+            thiccysapi.textpro(url, input)
+                    .then(async (data) => {
+                        try {
+                            fetchImage(data)
+                        } catch(err) {
+                            console.log(err);
+                        }
+                    })
+                }
+                async function fetchImage(url){
+                    try {
+                    https.request(url, function(response) {                                        
+                        var data = new Stream();                                                    
+                        response.on('data', function(chunk) {                                       
+                            data.push(chunk);                                                         
+                         });                                                                         
+                        response.on('end', function() {                                             
+                            fs.writeFileSync(`i${contact.number}i.png`, data.read());                               
+                        });                                                                         
+                    }).end();
+                        setTimeout(async () => {
+                            let media = MessageMedia.fromFilePath(`i${contact.number}i.png`)
+                            client.sendMessage(message.from, media)
+                        }, 1500)
+                        }catch (err){
+                            console.log(err)
+                        }}
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
 
@@ -913,7 +942,7 @@ else if (msg.body.startsWith(".animeFact")){
 else if (msg.body.startsWith('.media')){
     let url = message.body.split(' ')[1];
     let caption = message.body.split(' ')[2];
-    enviarMediaURLcaption(url, caption)
+    enviarMediaURL(url)
 }
 
 else if (message.body.startsWith('.catFac')){
@@ -1061,9 +1090,50 @@ else if (msg.body.startsWith('.symbo')){
 }
 
 else if(msg.body.startsWith('.wings')){
-    
+
+    let input = msg.body.slice(7)
+    let url = "https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html";
+    apiTextPro(url, input)
+}
+else if (msg.body.startsWith('.glitched')){
+    let input = msg.body.slice(10)
+    let url = "https://textpro.me/create-impressive-glitch-text-effects-online-1027.html";
+    apiTextPro(url, input)
+}
+else if (msg.body.startsWith('.greenHorror')){
+    let input = msg.body.slice(13)
+    let url = "https://textpro.me/create-green-horror-style-text-effect-online-1036.html";
+    apiTextPro(url, input)
+}
+else if (msg.body.startsWith('.scaryHallowen')){
+    let input = msg.body.slice(15)
+    let url = "https://textpro.me/create-scary-halloween-text-effects-online-1090.html";
+    apiTextPro(url, input)
+}
+else if (msg.body.startsWith('.batman')){
+    let input = msg.body.slice(8)
+    let url = "https://textpro.me/make-a-batman-logo-online-free-1066.html";
+    apiTextPro(url, input)
+}
+else if (msg.body.startsWith('.blackpink')){
+    let input = msg.body.slice(11)
+    let url = "https://textpro.me/create-blackpink-logo-style-online-1001.html";
+    apiTextPro(url, input)
 }
 
+
+else if (msg.body.startsWith('.textPro')){
+    let url = msg.body.split(' ')[1];
+    let input = msg.body.split(' ')[2];
+    apiTextPro(url,input);
+}
+
+
+else if(msg.body.startsWith('.pruebaMedia')){
+    let url = "https://cdn.discordapp.com/attachments/1035967904274993232/1036350646120628264/unknown.png"
+    fetch(url).then(res => res.body.pipe(fs.createWriteStream('image.png')))
+    enviarMedia('./image.png')
+}
 
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 switch(msg.body){
