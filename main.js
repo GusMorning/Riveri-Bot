@@ -165,6 +165,7 @@ saludoNuevoBoton,
 const { url } = require("inspector");
 const { parse } = require("path");
 const json2plain = require("json2plain");
+const execSync = require('child_process').execSync;
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
     /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	
@@ -356,7 +357,7 @@ if (msg.body.startsWith('pruebaMensaje')) {
 } 
 
 else if (msg.body.startsWith('ymp3')){
-    const execSync = require('child_process').execSync;
+
     try {
         const chat = await msg.getChat();
         const contact = await msg.getContact();
@@ -370,7 +371,7 @@ else if (msg.body.startsWith('ymp3')){
         let stdout = execSync(`C:/Users/asuka/Documents/GitHub/Riveri-Bot/yt-dlp -S "res:144" --extract-audio --audio-format mp3 -o ${contact.number}y.mp3 --max-filesize 26121471 --force-overwrites ` + it + `` , options);
         chat.sendStateTyping();
         const media = MessageMedia.fromFilePath(`${contact.number}y.mp3`);
-        chat.sendMessage(`download done ${media.data.length}`);
+        chat.sendMessage(`download done ${media.data.length / 1000}`);
         if (`${media.data.length}` > 110000){
         chat.sendMessage(media);
         }
@@ -968,7 +969,37 @@ else if (msg.body.startsWith('.js')){
         msg.reply(json2plain(response, options))
     })
 }
-// Error: response.join is not a function
+else if (msg.body.startsWith('.title')){
+    let url = msg.body.split(' ')[1]
+    let titulo = execSync(`yt-dlp ${url} --print "title"`)
+    .toString()
+    msg.reply(titulo)
+}
+else if (msg.body.startsWith(".yt")){
+    const chat = await msg.getChat();
+    const contact = await msg.getContact();
+    let search = msg.body.slice(4);
+    let options = {stdio : 'pipe' };
+
+    let titulo = execSync(`yt-dlp "ytsearch:${search}" --print "title"`)
+    .toString();
+    let video = execSync(`yt-dlp -S "res:144" --extract-audio --audio-format mp3 -o ${contact.number}y.mp3 --max-filesize 26121471 --force-overwrites ` + '"ytsearch:' + search + '"' + ` ` , options);
+    const media = MessageMedia.fromFilePath(`${contact.number}y.mp3`);
+    const botonYT = new Buttons(
+        `┌————————————${url}0:43━━━━●─────────
+└————————————`,
+        [{body: 'Correcto ✅'}],
+        `┌————————————\n${titulo}\n└————————————`,
+        'Hecho por NRC-Bot');
+    if (`${media.data.length}` > 110000){
+    chat.sendMessage(`*┌————————————*\n*${titulo}**└————————————*`)
+    chat.sendMessage(media);
+    }
+    else {
+        chat.sendMessage(botonYT)
+    chat.sendMessage(media); 
+    }
+}
 
 
 
