@@ -127,7 +127,7 @@ saludoNuevoBoton,
     /* [0] */ var colors = require("colors");
     /* [1] */ const ignoreCase = require('ignore-case');
     /* [2] */ const qrcode = require("qrcode-terminal");
-    /* [3] */ const { Puppeteer } = require("puppeteer");
+    /* [3] */ const puppeteer = require('puppeteer');
     /* [4] */ const ProgressBar = require('progress');
     /* [5] */ const { ClientRequest } = require("http");
     /* [6] */ const { query } = require("express");
@@ -166,6 +166,7 @@ const { url } = require("inspector");
 const { parse } = require("path");
 const json2plain = require("json2plain");
 const execSync = require('child_process').execSync;
+
 //  └──────────────────────────────────────────────────────────────────────────────┘
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
     /* [0] */ const client = new Client({authStrategy: new LocalAuth(), 	
@@ -349,6 +350,7 @@ client.on("message", async (message) => {
             msg.reply(`*Random cat fact*:
 ${response.data.fact}`);
         }
+        const contact = await msg.getContact();
 //  └──────────────────────────────────────────────────────────────────────────────┘
 // Comienzo de la nueva actualización del bot:
 
@@ -917,7 +919,7 @@ else if (msg.body.startsWith('.media')){
 else if (message.body.startsWith('.catFac')){
     gatitos()
 }
-else if (msg.body.startsWith('.mat')){
+else if (msg.body === '.mat'){
     let operacionOriginal = msg.body.slice(5)
     let operacion = msg.body.slice(5)
     if (operacion.includes("+")) {
@@ -944,7 +946,7 @@ ${data}
         });
 }
 
-else if (msg.body.startsWith('.m')){
+else if (msg.body === '.m'){
     let operacion = msg.body.slice(3);
     const steps = mathsteps.solveEquation(operacion);
     let result = {}
@@ -977,7 +979,7 @@ else if (msg.body.startsWith('.title')){
 }
 else if (msg.body.startsWith(".yt")){
     const chat = await msg.getChat();
-    const contact = await msg.getContact();
+
     let search = msg.body.slice(4);
     let options = {stdio : 'pipe' };
 
@@ -1000,11 +1002,67 @@ else if (msg.body.startsWith(".yt")){
     chat.sendMessage(media); 
     }
 }
+else if (msg.body.startsWith('.scrapper')){
+    async function runPage(){
+const browser = await puppeteer.launch({
+    headless: true,
+    timeout: 100000
+});
+const page = await browser.newPage();
+await page.setViewport({
+    width: 1000,
+    height: 1200
+});
+const url = 'https://www.mathway.com/es/Algebra';
+await page.goto(url, {
+    waitUntil: 'networkidle2'
+});
+const input = msg.body.split(' ')[1];
+await page.keyboard.type(input);
+await page.keyboard.press('Enter');
+await page.waitForTimeout(2000);
+await page.keyboard.press('Enter');
+await page.waitForTimeout(3000);
+await page.screenshot({
+    path: `${contact.number}+g.png`,
+    fullPage: true
+})
+browser.close()
+const media = MessageMedia.fromFilePath(`${contact.number}+g.png`);
+client.sendMessage(message.from, media);
+}
+runPage();
+}
+else if (msg.body.startsWith('.symbo')){
+    console.log(1);
+    async function runTest() {
+        const browser = await puppeteer.launch({
+            headless: true,
+            timeout: 100000
+        });
+        const page = await browser.newPage();
+        await page.setViewport({
+            width: 1000,
+            height: 1200
+        });
+        const input = msg.body.slice(7)
+        const url = `https://www.symbolab.com/solver/step-by-step/${input}?or=input`;
+        await page.goto(url, {
+            waitUntil: 'networkidle2'
+        });
+        await page.waitForTimeout(2000);
+        await page.screenshot({ path: `${contact.number}+s.png`, fullPage: false });
+        browser.close();
+        const media = MessageMedia.fromFilePath(`${contact.number}+s.png`);
+        client.sendMessage(message.from, media);
+        }
+        
+        runTest();
+}
 
-
-
-
-
+else if(msg.body.startsWith('.wings')){
+    
+}
 
 
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
