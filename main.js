@@ -948,9 +948,9 @@ else if (msg.body.startsWith('.media')){
 else if (message.body.startsWith('.catFac')){
     gatitos()
 }
-else if (msg.body === '.mat'){
-    let operacionOriginal = msg.body.slice(5)
-    let operacion = msg.body.slice(5)
+else if (msg.body.startsWith('.wolfram')){
+    let operacionOriginal = msg.body.slice(9)
+    let operacion = msg.body.slice(9)
     if (operacion.includes("+")) {
         operacion = operacion.replace("+", "%2B")
       }
@@ -975,8 +975,8 @@ ${data}
         });
 }
 
-else if (msg.body === '.m'){
-    let operacion = msg.body.slice(3);
+else if (msg.body.startsWith('.mathway')){
+    let operacion = msg.body.slice(9);
     const steps = mathsteps.solveEquation(operacion);
     let result = {}
     steps.forEach(step => {
@@ -1079,7 +1079,7 @@ else if (msg.body.startsWith('.symbo')){
         await page.goto(url, {
             waitUntil: 'networkidle2'
         });
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(3000);
         await page.screenshot({ path: `${contact.number}+s.png`, fullPage: false });
         browser.close();
         const media = MessageMedia.fromFilePath(`${contact.number}+s.png`);
