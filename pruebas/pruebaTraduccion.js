@@ -11,10 +11,10 @@ const translate = new Translate({projectId: 'sigma-outlook-361916'});
 
 async function quickStart() {
   // The text to translate
-  const text = 'Hello, world!';
+  const text = 'yes SUBTRACT FROM BOTH SIDES';
 
   // The target language
-  const target = 'ru';
+  const target = 'es';
 
   // Translates some text into Russian
   const [translation] = await translate.translate(text, target);

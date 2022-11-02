@@ -1,8 +1,16 @@
 const puppeteer = require('puppeteer');
 const interface = require('readline-sync')
+const PuppeteerBlocker = require('@cliqz/adblocker-puppeteer')
+const fetch = require('cross-fetch')
+PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+    blocker.enableBlockingInPage(page);
+  });
 async function runTest() {
+
+
+
 const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     timeout: 100000
 });
 const page = await browser.newPage();
@@ -10,19 +18,14 @@ await page.setViewport({
     width: 1000,
     height: 1000
 });
-const url = 'https://www.mathway.com/es/Algebra';
+let input = interface.question('Ingrese su operacion: '); input = encodeURIComponent(input)
+const url = 'https://www.cymath.com/sp/answer?q='+input;
 
 await page.goto(url, {
     waitUntil: 'networkidle2'
 });
-const input = interface.question('Ingrese su operacion: ')
-await page.keyboard.type(input)
-await page.keyboard.press('Enter');
-await page.waitForTimeout(2000);
-await page.keyboard.press('Enter');
 await page.waitForTimeout(3000);
-// await autoScroll(page);
-await page.screenshot({ path: 'fullpage.png', fullPage: false });
+await page.screenshot({ path: 'fullpage.png', fullPage: true });
 browser.close();
 }
 

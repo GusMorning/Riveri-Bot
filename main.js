@@ -315,7 +315,7 @@ client.on("message", async (message) => {
             const text = texto;
           
             // The target language
-            const target = 'en';
+            const target = 'es';
           
             // Translates some text into Russian
             const [translation] = await translate.translate(text, target);
@@ -331,6 +331,22 @@ client.on("message", async (message) => {
 └————————————`;
             enviarMensaje(mensaje)
           }
+        async function quickStartTraduccion(texto, idioma) {
+            // The text to translate
+            const text = texto;
+          
+            // The target language
+            const target = idioma;
+          
+            // Translates some text into Russian
+            const [translation] = await translate.translate(text, target);
+            return translation;
+          }
+
+
+
+
+
           const delay = ms => new Promise(res => setTimeout(res, ms));
           const apiTiempoActual = {
             method: 'GET',
@@ -951,40 +967,30 @@ else if (message.body.startsWith('.catFac')){
 else if (msg.body.startsWith('.wolfram')){
     let operacionOriginal = msg.body.slice(9)
     let operacion = msg.body.slice(9)
-    if (operacion.includes("+")) {
-        operacion = operacion.replace("+", "%2B")
-      }
+    operacion = encodeURIComponent(operacion)
       const url = `http://api.wolframalpha.com/v2/query?appid=EL5KV3-XH24YPGWT6&input="${operacion}"&podstate=Result__Step-by-step%20solution&format=image&output=json`;
       fetch(url)
-        .then(response => response.json())
-        .then((data) => {
-          data = data.queryresult.pods[4].subpods[0].img.alt
-          msg.reply(`┌————————————
-*Calculadora Multiusos*
-└————————————
-┌————————————
-*Operacion:*
-${operacionOriginal}
-*Resultado:*
-${data}
-└————————————
-┌————————————┐
-- *Euler-Bot©*
-└————————————┘
-`)
+      .then(response => response.json())
+      .then(function(response){
+          msg.reply(json2plain(response, options))
         });
 }
 
-else if (msg.body.startsWith('.mathway')){
-    let operacion = msg.body.slice(9);
+else if (msg.body.startsWith('.m')){
+    let operacion = msg.body.slice(3);
     const steps = mathsteps.solveEquation(operacion);
-    let result = {}
-    steps.forEach(step => {
-    result += "[+]" + step.oldEquation.ascii() + '\n';  // e.g. before change: 2x + 3x = 35
-    result += "[+]" + step.changeType + '\n';                  // e.g. change: SIMPLIFY_LEFT_SIDE
-    result += "[+]" + step.newEquation.ascii() + '\n';   // e.g. after change: 5x = 35
+    let result = {};
+    result += '┌————————————' + '\n';
+    result += '*Calculadora matemática* 🌐' + '\n';
+    result += '└————————————'+ '\n';
+    result += '┌————————————' + '\n';
+    steps.forEach(async step => {
+    result += "✅ *" + step.changeType + '*' + '\n';                  // e.g. change: SIMPLIFY_LEFT_SIDE
+    result += '└————————————'+ '\n';
+    result += "= " + step.newEquation.ascii() + '\n';   // e.g. after change: 5x = 35
+    result += '└————————————'+ '\n';
 });
-    client.sendMessage(message.from, result)
+    client.sendMessage(message.from, result.slice(15))
 }
 
 else if (msg.body.startsWith('.perrito')){
@@ -1063,7 +1069,7 @@ client.sendMessage(message.from, media);
 runPage();
 }
 else if (msg.body.startsWith('.symbo')){
-    console.log(1);
+    console.log('[+] '.yellow + 'Función activada correctamente');
     async function runTest() {
         const browser = await puppeteer.launch({
             headless: true,
@@ -1074,7 +1080,8 @@ else if (msg.body.startsWith('.symbo')){
             width: 1000,
             height: 1200
         });
-        const input = msg.body.slice(7)
+        let input = msg.body.slice(7)
+        input = encodeURIComponent(input);
         const url = `https://www.symbolab.com/solver/step-by-step/${input}?or=input`;
         await page.goto(url, {
             waitUntil: 'networkidle2'
@@ -1120,8 +1127,112 @@ else if (msg.body.startsWith('.blackpink')){
     let url = "https://textpro.me/create-blackpink-logo-style-online-1001.html";
     apiTextPro(url, input)
 }
+else if (msg.body.startsWith('.retro')){
+async function ApiTextoRetro(){
+    const browser = await puppeteer.launch({
+        headless: true,
+        timeout: 100000
+    });
+    const page = await browser.newPage();
+    await page.setViewport({
+        width: 1000,
+        height: 1200
+    });
+    const input = msg.body.split(' ')[1];
+    const input1 = msg.body.split(' ')[2];
+    /* ----------------------------------- Url ---------------------------------- */
+    const url = "file:///C:/Users/asuka/Desktop/puppeter%20prueba/we1/retro-text-effect-pure-css/dist/index.html"
+    await page.goto(url, {
+        waitUntil: 'networkidle2'
+    });
+    /* --------------------- Esperamos al elemento del XPATH -------------------- */
+    await page.waitForXPath("/html/body/h2");
+    /* --------------------- Definimos el elemento a cambiar -------------------- */
+    let elemento = await page.$x('/html/body/h2');
+    /* ---------- Evaluamos el resultado y cambiamos su valor por input --------- */
+    await page.evaluate((input, elemento) => {
+        elemento.innerHTML = input
+    }, input, elemento[0]);
+    /* ---------------- Lo mismo pero con los otros dos elementos --------------- */
+    let elemento1 = await page.$x('/html/body/h1/span[1]')
+    let elemento2 = await page.$x('/html/body/h1/span[2]')
+    await page.evaluate((input1, elemento1) => {
+        elemento1.innerHTML = input1
+    }, input1, elemento1[0]);
+    await page.evaluate((input1, elemento2) => {
+        elemento2.innerHTML = input1
+    }, input1, elemento2[0]);
+    /* --------------------- Tomamos screenshot de la página -------------------- */
+    await page.screenshot({
+        path: `${contact.number}retro.png`,
+        fullPage: false
+    });
+    browser.close();
+    const media = MessageMedia.fromFilePath(`${contact.number}retro.png`);
+    client.sendMessage(message.from, media);
+}; ApiTextoRetro()
+}
+else if (msg.body.startsWith('.book')){
+async function runPage(){
+        const browser = await puppeteer.launch({
+          headless: true,
+          timeout: 100000,
+        });
+      
+        const page = await browser.newPage();
+      
+        await page.setViewport({
+          width: 600,
+          height: 880,
+        });
+      
+        await page.goto(
+          "file:///C:/Users/asuka/Desktop/puppeter%20prueba/we1/drop-capitalfirst-letter/dist/index.html",
+          { waitUntil: "networkidle2" }
+        );
+      
+        await page.waitForXPath("/html/body/h1");
+      
+        const titulo = msg.body.split(' ')[1];
+        const nombre = msg.body.split(' ')[2];
+        const messageIndex = msg.body.indexOf(titulo) + titulo.length + nombre.length + 1;
+        const parrafo1 = msg.body.slice(messageIndex, msg.body.length);
+        const parrafo2 = new Date + ' ' + nombre;
+      
+        let tituloElemento = await page.$x("/html/body/h1");
+        let parrafoElemento1 = await page.$x("/html/body/div/p[1]");
+        let parrafoElemento2 = await page.$x("/html/body/div/p[2]");
+      
+        await page.evaluate(
+          (titulo, tituloElemento, parrafo1, parrafoElemento1, parrafo2, parrafoElemento2) => {
+            tituloElemento.innerHTML = titulo;
+            parrafoElemento1.innerHTML = parrafo1;
+            parrafoElemento2.innerHTML = parrafo2;
+          },
+          titulo,
+          tituloElemento[0],
+          parrafo1,
+          parrafoElemento1[0],
+          parrafo2,
+          parrafoElemento2[0]
+        );
+        
+        /**
+        await page.evaluate( (parrafo1, parrafoElemento1) => {
+          
+        })
+       */
+        await page.screenshot({
+          path: `${contact.number}-libro.png`,
+          fullpage: false
+        });
+      
+        browser.close();
 
-
+        const media = MessageMedia.fromFilePath(`${contact.number}-libro.png`);
+        client.sendMessage(message.from, media);
+      } runPage();
+    }
 else if (msg.body.startsWith('.textPro')){
     let url = msg.body.split(' ')[1];
     let input = msg.body.split(' ')[2];
@@ -1133,6 +1244,17 @@ else if(msg.body.startsWith('.pruebaMedia')){
     let url = "https://cdn.discordapp.com/attachments/1035967904274993232/1036350646120628264/unknown.png"
     fetch(url).then(res => res.body.pipe(fs.createWriteStream('image.png')))
     enviarMedia('./image.png')
+}
+else if (msg.body === 'Sticker' || msg.body === 's' || msg.body === 'S'){
+    if (msg.hasMedia && msg.hasQuotedMsg != false){
+        const attachmentData = await msg.downloadMedia();
+        client.sendMessage(msg.from, attachmentData, { sendMediaAsSticker: true});
+    } else if (msg.hasQuotedMsg && msg.hasMedia){
+        const quotedMsg = await msg.getQuotedMessage();
+        const attachmentData = await quotedMsg.downloadMedia();
+        client.sendMessage(msg.from, attachmentData, { sendMediaAsSticker: true});
+    }
+
 }
 
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
