@@ -1233,7 +1233,7 @@ async function runPage(){
         client.sendMessage(message.from, media);
       } runPage();
     }
-else if (msg.body.startsWith('.textPro')){
+else if (msg.body.startsWith('.textPro1')){
     let url = msg.body.split(' ')[1];
     let input = msg.body.split(' ')[2];
     apiTextPro(url,input);
