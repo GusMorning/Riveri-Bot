@@ -254,7 +254,7 @@ client.on("message", async (message) => {
   └─────────────────────────────────────────────────────────────────────────┘
  */
 //  ┌───────────────────────────────────────────────────────────────────────────────────┐
-    /* [0] */ console.log('[+]'.green, ` Mensaje recibido de`, `${message.from}:`, `${message.body}`);
+    /* [0] */ console.log('[+]'.green, ` Mensaje recibido de`, `${message.from}:`, `${message.body} ${message.type}`);
 //  └───────────────────────────────────────────────────────────────────────────────────┘
 /* 
  ┌─────────────────────────────────────────────────────────────────────────┐
@@ -872,6 +872,9 @@ ${msg.body}
 └────────────┘`;
             enviarMedia('./media/imagenCalcularVelocidad.png', mensaje)
         }
+        if (clasificaciones === 'Distancia'){
+            
+        }
     }
 }
 
@@ -1012,6 +1015,7 @@ else if (msg.body.startsWith('.title')){
     .toString()
     msg.reply(titulo)
 }
+/**
 else if (msg.body.startsWith(".yt")){
     const chat = await msg.getChat();
 
@@ -1029,7 +1033,6 @@ else if (msg.body.startsWith(".yt")){
         `┌————————————\n${titulo}\n└————————————`,
         'Hecho por NRC-Bot');
     if (`${media.data.length}` > 110000){
-    chat.sendMessage(`*┌————————————*\n*${titulo}**└————————————*`)
     chat.sendMessage(media);
     }
     else {
@@ -1037,6 +1040,7 @@ else if (msg.body.startsWith(".yt")){
     chat.sendMessage(media); 
     }
 }
+ */
 else if (msg.body.startsWith('.scrapper')){
     async function runPage(){
 const browser = await puppeteer.launch({
@@ -1257,6 +1261,51 @@ else if (msg.body === 'Sticker' || msg.body === 's' || msg.body === 'S'){
 
 }
 
+else if (msg.body.startsWith('.yt')){
+// .yt amar como tu
+// . video amar como tu
+// 0   1    2
+    let titulo = msg.body.slice(4)
+    function descargarTitulo(search){
+        let titulo1 = execSync(`yt-dlp "ytsearch:${search}" --print "title"`).toString();
+        return titulo1
+    }
+    function descargarDuracion(search){
+        let titulo1 = execSync(`yt-dlp "ytsearch:${search}" --print "duration_string"`).toString();
+        return titulo1
+    }
+    titulo1 = descargarTitulo(titulo);
+    let duracion = descargarDuracion(titulo)
+    const buttons_reply = new Buttons('Encontrado con éxito', [
+        {body: 'Video', id: `. Video ${titulo1}`}, 
+        {body: 'Audio', id: `. Audio ${titulo1}`}
+    ], titulo1, 'NRC-Bot') // Reply button
+    client.sendMessage(message.from, buttons_reply)
+}
+else if (msg.type === 'buttons_response'){
+    // . video   amar como tu
+    //   opcion  titulo
+    if (msg.selectedButtonId.startsWith('.')){
+        let opcion = msg.selectedButtonId.split(' ')[1]
+        if (opcion === 'Video'){
+            let titulo = msg.selectedButtonId.slice(8)
+                const chat = msg.getChat();
+                let options = {stdio : 'pipe' };
+                let video = execSync(`yt-dlp -f "(mp4)[height<480]" -o ${contact.number}y.mp4 --max-filesize 26121471 --force-overwrites ` + '"ytsearch:' + titulo + '"' + ` ` , options);
+                const media = MessageMedia.fromFilePath(`${contact.number}y.mp4`);
+                client.sendMessage(message.from, media)
+            }
+            if (opcion === 'Audio'){
+                let titulo = msg.selectedButtonId.slice(8)
+                    let options = {stdio : 'pipe' };
+                    let video = execSync(`yt-dlp -S "res:144" --extract-audio --audio-format mp3 -o ${contact.number}a.mp3 --max-filesize 26121471 --force-overwrites ` + '"ytsearch:' + titulo + '"' + ` ` , options);
+                    console.log('listo');
+                    const media = MessageMedia.fromFilePath(`${contact.number}a.mp3`);
+                    client.sendMessage(message.from, media)
+        }
+        } 
+
+}
 //  ┌──────────────────────────────────────────────────────────────────────────────┐
 switch(msg.body){
 //  └──────────────────────────────────────────────────────────────────────────────┘
